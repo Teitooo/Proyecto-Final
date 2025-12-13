@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Acerca</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Sobre Nosotros</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Tienda</a></li>
                 
                 <li class="nav-item dropdown">
@@ -20,6 +20,12 @@
                             <hr class="dropdown-divider" />
                         </li>
                         <li><a class="dropdown-item" href="{{route('perfil.edit')}}">Mi perfil</a></li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                            </form>
+                        </li>
                     </ul>
                     @else
                         <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>
