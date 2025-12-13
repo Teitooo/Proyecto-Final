@@ -1,14 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#!">Medical Supplies</a>
+        <a class="navbar-brand" href="{{ route('home') }}">Medical Supplies</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Acerca</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Tienda</a></li>
+                <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link {{ request()->routeIs('catalog') ? 'active' : '' }}" href="{{ route('catalog') }}">Catálogo</a></li>
+                <li class="nav-item"><a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">Acerca de</a></li>
                 
                 <li class="nav-item dropdown">
                     @auth
