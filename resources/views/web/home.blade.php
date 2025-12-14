@@ -223,38 +223,6 @@
             </div>
 
             <!-- Search and Filter Section -->
-            <form method="GET" action="{{route('home')}}" class="mb-4">
-                <div class="row g-3">
-                    <!-- Search Box -->
-                    <div class="col-md-8">
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control form-control-lg" id="searchInput" 
-                                   placeholder="Buscar productos..." name="search" 
-                                   value="{{request('search')}}">
-                            <button class="btn btn-primary" type="submit" id="searchButton">
-                                Buscar
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Sort Dropdown -->
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            <label class="input-group-text">Ordenar:</label>
-                            <select class="form-select" id="sortSelect" name="sort" onchange="this.form.submit()">
-                                <option value="">-- Seleccionar --</option>
-                                <option value="priceAsc" {{ request('sort') == 'priceAsc' ? 'selected' : '' }}>
-                                    Precio: menor a mayor
-                                </option>
-                                <option value="priceDesc" {{ request('sort') == 'priceDesc' ? 'selected' : '' }}>
-                                    Precio: mayor a menor
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </form>
 
             <!-- Products Section -->
             @if($productos->count() > 0)

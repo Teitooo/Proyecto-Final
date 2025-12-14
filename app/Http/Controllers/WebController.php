@@ -29,7 +29,7 @@ class WebController extends Controller
             }
         }
         // Obtener productos filtrados
-        $productos = $query->paginate(10);    
+        $productos = $query->paginate(3);    
         return view('web.home', compact('productos'));
 
     }
