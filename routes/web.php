@@ -16,9 +16,7 @@ use App\Http\Controllers\InventarioController;
 
 Route::get('/', [WebController::class, 'home'])->name('home');
 Route::get('/home', [WebController::class, 'home'])->name('index');
-Route::get('/catalogo', function() {
-    return view('web.catalog');
-})->name('catalog');
+Route::get('/catalogo', [WebController::class, 'catalog'])->name('catalog');
 Route::get('/acerca-de', function() {
     return view('web.about');
 })->name('about');

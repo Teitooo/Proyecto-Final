@@ -13,4 +13,9 @@ class Producto extends Model
         'descripcion',
         'imagen',
     ];
+
+    public function inventario()
+    {
+        return $this->hasOne(Inventario::class);
+    }
 }

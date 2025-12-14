@@ -1,0 +1,77 @@
+/* Stock Badge Styles */
+.product-image {
+    position: relative;
+}
+
+.stock-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #10b981;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    animation: slideIn 0.3s ease-out;
+}
+
+.stock-badge.low-stock {
+    background: #f59e0b;
+}
+
+.stock-badge.out-of-stock {
+    background: #ef4444;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stock-info {
+    padding: 12px;
+    background: #f3f4f6;
+    border-left: 4px solid #10b981;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.stock-info.low-stock {
+    border-left-color: #f59e0b;
+}
+
+.stock-info.out-of-stock {
+    border-left-color: #ef4444;
+}
+
+.stock-quantity {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #10b981;
+}
+
+.stock-info.out-of-stock .stock-quantity {
+    color: #ef4444;
+}
+
+.stock-location {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.stock-warning {
+    color: #f59e0b;
+    margin-top: 5px;
+    font-size: 0.9rem;
+}
