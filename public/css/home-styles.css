@@ -1,5 +1,155 @@
 /* Medical Supplies - CSS Styles */
 
+/* Navigation Styles */
+nav {
+    background: var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary) !important;
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    color: var(--primary-dark) !important;
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #333 !important;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0 !important;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--primary) !important;
+}
+
+.nav-link.active {
+    color: var(--primary) !important;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary);
+}
+
+.navbar-nav .dropdown {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    background: var(--white);
+    min-width: 200px;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 0;
+    list-style: none;
+    display: none !important;
+    margin-top: 0;
+    z-index: 1001;
+    border: 1px solid #e0e0e0;
+}
+
+.navbar-nav .dropdown:hover .dropdown-menu {
+    display: none;
+}
+
+.dropdown-menu[style*="display: block"] {
+    display: block !important;
+}
+
+.dropdown-item {
+    padding: 0.75rem 1.5rem;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background: var(--secondary);
+    color: var(--primary);
+}
+
+.btn-outline-dark {
+    color: #333 !important;
+    border-color: #333 !important;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.btn-outline-dark:hover {
+    background: var(--primary);
+    border-color: var(--primary) !important;
+    color: var(--white) !important;
+}
+
+.badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--danger) !important;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .dropdown-menu {
+        position: static;
+        display: none;
+        box-shadow: none;
+        background: var(--secondary);
+    }
+    
+    .navbar-nav .dropdown:hover .dropdown-menu {
+        display: none;
+    }
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;

@@ -207,9 +207,11 @@ function updateCart() {
 
 function updateCartBadge() {
     const badge = document.getElementById('cartBadge');
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    badge.textContent = totalItems;
-    badge.style.display = totalItems > 0 ? 'flex' : 'none';
+    if (badge) {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        badge.textContent = totalItems;
+        badge.style.display = totalItems > 0 ? 'flex' : 'none';
+    }
 }
 
 function addToCart(productId) {
@@ -391,7 +393,30 @@ function showNotification(message, type = 'info') {
 }
 
 // Initialize
+console.log('Script loaded');
+
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded');
     updateCartBadge();
     renderCart();
+    
+    // Dropdown menu handler - Simple version
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+    if (dropdownToggle) {
+        console.log('Found dropdown toggle');
+        dropdownToggle.addEventListener('click', function(e) {
+            console.log('Dropdown clicked');
+            if (dropdownMenu) {
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                } else {
+                    dropdownMenu.style.display = 'block';
+                }
+            }
+        });
+    } else {
+        console.log('Dropdown toggle not found');
+    }
 });
