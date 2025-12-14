@@ -102,31 +102,24 @@
                         Marcas
                     </h3>
                     <div class="filter-options">
-                        <label class="filter-checkbox">
-                            <input type="checkbox">
-                            <span>Philips</span>
-                            <span class="filter-count">3</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox">
-                            <span>3M</span>
-                            <span class="filter-count">2</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox">
-                            <span>Medtronic</span>
-                            <span class="filter-count">3</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox">
-                            <span>Siemens</span>
-                            <span class="filter-count">2</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox">
-                            <span>GE Healthcare</span>
-                            <span class="filter-count">2</span>
-                        </label>
+                        @php
+                            $marcas = \App\Models\Producto::whereNotNull('marca')
+                                ->distinct()
+                                ->pluck('marca')
+                                ->sort();
+                        @endphp
+                        @forelse($marcas as $marca)
+                            @php
+                                $count = \App\Models\Producto::where('marca', $marca)->count();
+                            @endphp
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="{{ $marca }}" class="brand-filter">
+                                <span>{{ $marca }}</span>
+                                <span class="filter-count">{{ $count }}</span>
+                            </label>
+                        @empty
+                            <p style="color: #999; padding: 10px 0;">No hay marcas disponibles</p>
+                        @endforelse
                     </div>
                 </div>
             </aside>
