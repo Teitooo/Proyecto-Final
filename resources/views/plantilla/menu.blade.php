@@ -82,6 +82,14 @@
                             </a>
                         </li>
                         @endcan
+                        @can('inventario-list')
+                        <li class="nav-item">
+                            <a href="{{route('inventarios.index')}}" class="nav-link" id="itemInventario">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Inventario</p>
+                            </a>
+                        </li>
+                        @endcan
                     </ul>
                 </li>
                 @endcanany            

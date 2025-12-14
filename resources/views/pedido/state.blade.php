@@ -15,6 +15,8 @@
                             @can('pedido-anulate')
                             <option value="enviado">Enviado</option>
                             <option value="anulado">Anulado</option>
+                            <option value="devuelto">Devuelto</option>
+                            <option value="en espera">En espera</option>
                             @endcan
                             @can('pedido-cancel')
                             <option value="cancelado">Cancelado</option>
