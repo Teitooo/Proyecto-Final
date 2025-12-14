@@ -3,13 +3,14 @@
 <!-- Cart Section -->
 <section class="cart-section">
     <div class="container px-4 px-lg-5 my-5">
+        <div background-color: class="cart-header mb-4">
         <div class="mb-5">
             <h1 class="fw-bold mb-2" style="color: var(--primary-color);">
-                <i class="fas fa-shopping-cart me-3"></i>Tu Carrito de Compras
+                <i class="fas fa-shopping-cart me-3" ></i>Tu Carrito de Compras
             </h1>
-            <p class="text-muted">Revisa y confirma tus productos antes de realizar el pedido</p>
+            <p class="text-muted" style="color: var(--primary-color);">Revisa y confirma tus productos antes de realizar el pedido</p>
         </div>
-
+        </div>
         <div class="row g-4">
             <!-- Cart Items -->
             <div class="col-lg-8">
@@ -99,7 +100,7 @@
 
                 @if(count($carrito) > 0)
                 <div class="cart-footer">
-                    <a class="clear-cart-btn btn btn-outline-danger" href="{{route('carrito.vaciar')}}">
+                    <a class="clear-cart-btn" href="{{route('carrito.vaciar')}}">
                         <i class="fas fa-trash me-2"></i>Vaciar carrito
                     </a>
                 </div>
