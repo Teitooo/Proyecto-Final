@@ -20,10 +20,10 @@ Route::get('/catalogo', [WebController::class, 'catalog'])->name('catalog');
 Route::get('/acerca-de', function() {
     return view('web.about');
 })->name('about');
-Route::get('/producto/{id}', [WebController::class, 'show'])->name('web.show');
 Route::get('/contacto', function(){
     return view('web.contact');
-})->name('web.contact');
+})->name('contact');
+Route::get('/producto/{id}', [WebController::class, 'show'])->name('web.show');
 
 Route::get('/carrito', [CarritoController::class, 'mostrar'])->name('carrito.mostrar');
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
