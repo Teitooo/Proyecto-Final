@@ -148,6 +148,10 @@
         <!-- /.col -->
       </div>
       <!--end::Row-->
+      <hr class="my-3">
+      <p class="text-center text-muted mb-0">
+        ¿No tienes cuenta? <a href="{{route('registro')}}" class="fw-bold" style="color: var(--primary-dark); text-decoration: none;">Regístrate aquí</a>
+      </p>
     </form>
     <!-- /.social-auth-links -->
   </div>
