@@ -345,14 +345,21 @@
 
 /* Bootstrap Pagination Styles */
 .pagination {
-    gap: 0.25rem;
+    display: flex;
+    list-style: none;
     margin: 0;
-    flex-wrap: wrap;
+    padding: 0;
+    gap: 0.25rem;
+    flex-wrap: nowrap;
     justify-content: center;
+    align-items: center;
 }
 
 .page-item {
     margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
 }
 
 .page-link {
@@ -370,6 +377,7 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    line-height: 1;
 }
 
 .page-link:hover {
@@ -382,11 +390,13 @@
     background-color: var(--primary);
     color: var(--white);
     border-color: var(--primary);
+    cursor: default;
 }
 
 .page-item.disabled .page-link {
     opacity: 0.5;
     cursor: not-allowed;
+    background-color: var(--gray-50);
     color: var(--gray-400);
 }
 

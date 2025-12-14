@@ -79,22 +79,6 @@
                     </div>
                 </div>
 
-                <!-- Price Range -->
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">
-                        <i class="fas fa-dollar-sign"></i>
-                        Rango de Precio
-                    </h3>
-                    <div class="price-range">
-                        <div class="price-inputs">
-                            <input type="number" id="priceMin" placeholder="Min" value="0">
-                            <span>-</span>
-                            <input type="number" id="priceMax" placeholder="Max" value="20000">
-                        </div>
-                        <input type="range" class="price-slider" min="0" max="20000" value="0">
-                    </div>
-                </div>
-
                 <!-- Brands -->
                 <div class="sidebar-section">
                     <h3 class="sidebar-title">
