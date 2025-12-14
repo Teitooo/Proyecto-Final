@@ -12,6 +12,7 @@ class Producto extends Model
         'precio',
         'descripcion',
         'imagen',
+        'marca',
     ];
 
     public function inventario()
