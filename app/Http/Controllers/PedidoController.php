@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pedido;
 use App\Models\PedidoDetalle;
+use App\Models\Inventario;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
@@ -94,7 +95,26 @@ class PedidoController extends Controller
                     'cantidad' => $item['cantidad'], 
                     'precio' => $item['precio'],
                 ]);
+
+                // Restar del inventario si existe
+                try {
+                    $inventario = Inventario::where('producto_id', $productoId)->first();
+                    if ($inventario) {
+                        $inventario->cantidad_disponible -= $item['cantidad'];
+                        
+                        // Si la cantidad es negativa, colocar en 0
+                        if ($inventario->cantidad_disponible < 0) {
+                            $inventario->cantidad_disponible = 0;
+                        }
+                        
+                        $inventario->save();
+                    }
+                } catch (\Exception $invError) {
+                    // Si hay error al actualizar inventario, continuar sin fallar
+                    \Log::error('Error al actualizar inventario: ' . $invError->getMessage());
+                }
             }
+            
             // 4. Vaciar el carrito de la sesión
             session()->forget('carrito');
             DB::commit();
