@@ -51,12 +51,9 @@
             </li>
         </ul>
 
-        <a href="{{route('carrito.mostrar')}}" class="btn-outline-dark"
+        <a href="{{route('carrito.mostrar')}}" class="btn-outline-dark" style="text-decoration: none;"
             style="position: relative; display: inline-block;">
             <i class="fas fa-shopping-cart"></i> Carrito
-            <span id="cartBadge" class="badge">
-                {{ session('carrito') ? array_sum(array_column(session('carrito'), 'cantidad')) : 0 }}
-            </span>
         </a>
     </div>
 </nav>
