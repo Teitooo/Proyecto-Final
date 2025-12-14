@@ -7,6 +7,7 @@
     <meta name="author" content="Medical Supplies" />
     <meta name="description" content="Equipos médicos de alta calidad"/>
     <meta name="keywords" content="Medical, Supplies, Equipos Médicos"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>@yield('titulo', 'Inicio - Medical Supplies')</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.png') }}" />

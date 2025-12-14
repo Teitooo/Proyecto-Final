@@ -215,14 +215,34 @@ function updateCartBadge() {
 }
 
 function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-    const existingItem = cart.find(item => item.id === productId);
+    // Crear un formulario y enviarlo al servidor
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/carrito/agregar';
     
-    if (existingItem) { existingItem.quantity += 1; } else { cart.push({ id: product.id, name: product.name, price: product.price, image: product.image, quantity: 1 }); }
+    const csrfToken = document.querySelector('meta[name="csrf-token"]');
+    if (csrfToken) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = '_token';
+        input.value = csrfToken.getAttribute('content');
+        form.appendChild(input);
+    }
     
-    updateCart();
-    showNotification('Producto agregado al carrito');
+    const productInput = document.createElement('input');
+    productInput.type = 'hidden';
+    productInput.name = 'producto_id';
+    productInput.value = productId;
+    form.appendChild(productInput);
+    
+    const cantidadInput = document.createElement('input');
+    cantidadInput.type = 'hidden';
+    cantidadInput.name = 'cantidad';
+    cantidadInput.value = '1';
+    form.appendChild(cantidadInput);
+    
+    document.body.appendChild(form);
+    form.submit();
 }
 
 function removeFromCart(productId) {

@@ -26,7 +26,7 @@ class CarritoController extends Controller
             ];
         }
         session()->put('carrito', $carrito);
-        return redirect()->back()->with('mensaje', 'Producto agregado al carrito');
+        return redirect()->route('carrito.mostrar')->with('mensaje', 'Producto agregado al carrito');
     }
 
     public function mostrar(){
@@ -34,22 +34,19 @@ class CarritoController extends Controller
         return view('web.pedido', compact('carrito'));
     }
 
-    public function sumar(Request $request){
-        $productoId = $request->producto_id;
-
+    public function sumar($productoId){
         $carrito = session()->get('carrito', []);
 
         if (isset($carrito[$productoId])) {
             $carrito[$productoId]['cantidad'] += 1;
             session()->put('carrito', $carrito);
+            return response()->json(['success' => true, 'carrito' => $carrito]);
         }
 
-        return redirect()->back()->with('mensaje', 'Cantidad actualizada en el carrito');
+        return response()->json(['success' => false, 'message' => 'Producto no encontrado']);
     }
 
-    public function restar(Request $request){
-        $productoId = $request->producto_id;
-
+    public function restar($productoId){
         $carrito = session()->get('carrito', []);
 
         if (isset($carrito[$productoId])) {
@@ -62,20 +59,22 @@ class CarritoController extends Controller
                 unset($carrito[$productoId]);
             }
             session()->put('carrito', $carrito);
+            return response()->json(['success' => true, 'carrito' => $carrito]);
         }
 
-        return redirect()->back()->with('mensaje', 'Cantidad actualizada en el carrito');
+        return response()->json(['success' => false, 'message' => 'Producto no encontrado']);
     }
     public function eliminar($id){
-        $carrito = session()->get('carrito');
+        $carrito = session()->get('carrito', []);
         if (isset($carrito[$id])) {
             unset($carrito[$id]);
             session()->put('carrito', $carrito);
         }
-        return redirect()->back()->with('success', 'Producto eliminado');
+        return response()->json(['success' => true, 'carrito' => $carrito]);
     }
+
     public function vaciar(){
         session()->forget('carrito');
-        return redirect()->back()->with('success', 'Carrito vaciado');
+        return response()->json(['success' => true, 'carrito' => []]);
     }
 }

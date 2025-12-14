@@ -34,38 +34,88 @@ class PedidoController extends Controller
         return view('pedido.index', compact('registros', 'texto'));
     }
 
-    public function realizar(Request $request){
+    public function checkout(Request $request){
         $carrito = session()->get('carrito', []);
 
         if (empty($carrito)) {
-            return redirect()->back()->with('mensaje', 'El carrito está vacío.');
+            return redirect()->route('carrito.mostrar')->with('error', 'El carrito está vacío.');
+        }
+
+        // Calcular subtotal
+        $subtotal = 0;
+        foreach ($carrito as $item) {
+            $subtotal += $item['precio'] * $item['cantidad'];
+        }
+
+        return view('web.checkout', compact('carrito', 'subtotal'));
+    }
+
+    public function realizar(Request $request){
+        $request->validate([
+            'tipo_envio' => 'required|in:standar,express,priority,tienda',
+        ]);
+
+        $carrito = session()->get('carrito', []);
+
+        if (empty($carrito)) {
+            return redirect()->back()->with('error', 'El carrito está vacío.');
         }
         DB::beginTransaction();
         try {
-            // 1. Calcular el total
-            $total = 0;
+            // 1. Calcular el total con envío
+            $shippingCosts = [
+                'standar' => 0,
+                'express' => 15,
+                'priority' => 35,
+                'tienda' => 0
+            ];
+            
+            $subtotal = 0;
             foreach ($carrito as $item) {
-                $total += $item['precio'] * $item['cantidad'];
+                $subtotal += $item['precio'] * $item['cantidad'];
             }
+            
+            $shippingCost = $shippingCosts[$request->tipo_envio] ?? 0;
+            $total = $subtotal + $shippingCost;
+
             // 2. Crear el pedido
             $pedido = Pedido::create([
-                'user_id' => auth()->id(), 'total' => $total, 'estado' => 'pendiente'
+                'user_id' => auth()->id(), 
+                'total' => $total, 
+                'estado' => 'pendiente',
+                'tipo_envio' => $request->tipo_envio,
+                'notas' => $request->notas ?? null
             ]);
             // 3. Crear los detalles del pedido
             foreach ($carrito as $productoId => $item) {
                 PedidoDetalle::create([
-                    'pedido_id' => $pedido->id, 'producto_id' => $productoId,
-                    'cantidad' => $item['cantidad'], 'precio' => $item['precio'],
+                    'pedido_id' => $pedido->id, 
+                    'producto_id' => $productoId,
+                    'cantidad' => $item['cantidad'], 
+                    'precio' => $item['precio'],
                 ]);
             }
             // 4. Vaciar el carrito de la sesión
             session()->forget('carrito');
             DB::commit();
-            return redirect()->route('carrito.mostrar')->with('mensaje', 'Pedido realizado correctamente.');
+            
+            // Redirigir a la vista de confirmación
+            return redirect()->route('pedido.confirmacion', $pedido->id);
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Hubo un error al procesar el pedido.');
+            return redirect()->back()->with('error', 'Hubo un error al procesar el pedido: ' . $e->getMessage());
         }
+    }
+
+    public function confirmacion($id){
+        $pedido = Pedido::with('detalles.producto')->findOrFail($id);
+        
+        // Verificar que el pedido pertenezca al usuario autenticado
+        if ($pedido->user_id !== auth()->id()) {
+            abort(403, 'No tienes permiso para ver este pedido.');
+        }
+
+        return view('web.confirmacion-pedido', compact('pedido'));
     }
 
     public function cambiarEstado(Request $request, $id){

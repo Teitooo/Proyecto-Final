@@ -27,8 +27,8 @@ Route::get('/contacto', function(){
 
 Route::get('/carrito', [CarritoController::class, 'mostrar'])->name('carrito.mostrar');
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
-Route::get('/carrito/sumar', [CarritoController::class, 'sumar'])->name('carrito.sumar');
-Route::get('/carrito/restar', [CarritoController::class, 'restar'])->name('carrito.restar');
+Route::get('/carrito/sumar/{productoId}', [CarritoController::class, 'sumar'])->name('carrito.sumar');
+Route::get('/carrito/restar/{productoId}', [CarritoController::class, 'restar'])->name('carrito.restar');
 Route::get('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
 Route::get('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
 
@@ -39,7 +39,9 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('productos', ProductoController::class);
     Route::resource('inventarios', InventarioController::class);
 
+    Route::get('/checkout', [PedidoController::class, 'checkout'])->name('pedido.checkout');
     Route::post('/pedido/realizar', [PedidoController::class, 'realizar'])->name('pedido.realizar');
+    Route::get('/pedido/confirmacion/{id}', [PedidoController::class, 'confirmacion'])->name('pedido.confirmacion');
     Route::get('/perfil/pedidos', [PedidoController::class, 'index'])->name('perfil.pedidos');
     Route::patch('/pedidos/{id}/estado', [PedidoController::class, 'cambiarEstado'])->name('pedidos.cambiar.estado');    
 
