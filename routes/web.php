@@ -13,8 +13,8 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PedidoController;
 
-Route::get('/', [WebController::class, 'index'])->name('home');
-Route::get('/home', [WebController::class, 'index'])->name('index');
+Route::get('/', [WebController::class, 'home'])->name('home');
+Route::get('/home', [WebController::class, 'home'])->name('index');
 Route::get('/catalogo', function() {
     return view('web.catalog');
 })->name('catalog');

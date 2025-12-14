@@ -7,7 +7,7 @@ use App\Models\Producto;
 
 class WebController extends Controller
 {
-    public function index(Request $request){
+    public function home(Request $request){
         $query=Producto::query();
         // Búsqueda por nombre
         if ($request->has('search') && $request->search) {
