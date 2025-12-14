@@ -19,10 +19,17 @@
             </li>
 
             <li class="nav-item dropdown">
+                @auth
                 <button id="dropdownToggle" class="nav-link dropdown-toggle" style="border: none; background: none; cursor: pointer;">
-                    <i class="fas fa-user"></i> Admin
+                     <i class="fas fa-user"></i> {{auth()->user()->name}}
                 </button>
+                @else
+                <a class="nav-link" href="{{ route('login') }}" style="border: none; cursor: pointer;">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                </a>
+                @endauth
                 <ul id="dropdownMenu" class="dropdown-menu" style="display: none;">
+                    @auth
                     <li><a class="dropdown-item" href="http://127.0.0.1:8000/perfil/pedidos">
                             <i class="fas fa-box"></i> Mis pedidos
                         </a></li>
@@ -41,6 +48,7 @@
                             </button>
                         </form>
                     </li>
+                    @endauth
                 </ul>
             </li>
         </ul>
