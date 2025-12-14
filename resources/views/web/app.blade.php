@@ -12,7 +12,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.png') }}" />
     
     <!-- Bootstrap 5 CSS - IMPORTANTE -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUarbnLVrZ3PtaPvzLewajvsF+Yp2a8bTKolRJejhZfD7EM6HOf" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
@@ -41,7 +41,7 @@
     @include('web.partials.footer')
     
     <!-- Bootstrap Bundle JS - IMPORTANTE (incluye Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWbSxccPQtF3EpF3fnJHog6LaEVF6141f0VCu23KPvhnOM2Cx" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     
     <!-- Main App JS -->
     <script src="{{ asset('js/main-app.js') }}"></script>

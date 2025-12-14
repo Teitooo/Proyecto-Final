@@ -23,33 +23,31 @@
                 <button id="dropdownToggle" class="nav-link dropdown-toggle" style="border: none; background: none; cursor: pointer;">
                      <i class="fas fa-user"></i> {{auth()->user()->name}}
                 </button>
-                @else
-                <a class="nav-link" href="{{ route('login') }}" style="border: none; cursor: pointer;">
-                    <i class="fas fa-sign-in-alt"></i> Iniciar sesión
-                </a>
-                @endauth
-                <ul id="dropdownMenu" class="dropdown-menu" style="display: none;">
-                    @auth
-                    <li><a class="dropdown-item" href="http://127.0.0.1:8000/perfil/pedidos">
+                <ul id="dropdownMenu" class="dropdown-menu" style="display: none; position: absolute; background: white; border: 1px solid #ddd; border-radius: 4px; min-width: 200px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000;">
+                    <li><a class="dropdown-item" href="{{ route('perfil.pedidos') }}" style="display: block; padding: 10px 15px; color: #333; text-decoration: none;">
                             <i class="fas fa-box"></i> Mis pedidos
                         </a></li>
                     <li>
                         <hr style="margin: 0.5rem 0;">
                     </li>
-                    <li><a class="dropdown-item" href="http://127.0.0.1:8000/perfil">
+                    <li><a class="dropdown-item" href="{{ route('perfil.edit') }}" style="display: block; padding: 10px 15px; color: #333; text-decoration: none;">
                             <i class="fas fa-cog"></i> Mi perfil
                         </a></li>
                     <li>
-                        <form action="http://127.0.0.1:8000/logout" method="POST" style="padding: 0;">
-                            <input type="hidden" name="_token" value="kpoKa8AqTuJ64hZvnyhQCWVH5jNgU2EbNHlXwzSd"
-                                autocomplete="off"> <button type="submit" class="dropdown-item w-100 text-start"
-                                style="border: none; background: none;">
+                        <form action="{{ route('logout') }}" method="POST" style="padding: 0;">
+                            @csrf
+                            <button type="submit" class="dropdown-item w-100 text-start"
+                                style="border: none; background: none; padding: 10px 15px; text-align: left; cursor: pointer; display: block; width: 100%;">
                                 <i class="fas fa-sign-out-alt"></i> Cerrar sesión
                             </button>
                         </form>
                     </li>
-                    @endauth
                 </ul>
+                @else
+                <a class="nav-link" href="{{ route('login') }}" style="border: none; cursor: pointer;">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                </a>
+                @endauth
             </li>
         </ul>
 
@@ -71,8 +69,14 @@
         if (dropdownToggle && dropdownMenu) {
             dropdownToggle.addEventListener('click', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
                 const isVisible = dropdownMenu.style.display !== 'none';
                 dropdownMenu.style.display = isVisible ? 'none' : 'block';
+            });
+
+            // Permitir clicks en el dropdown menu sin cerrarlo
+            dropdownMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
             });
 
             // Cerrar dropdown cuando se hace click fuera
