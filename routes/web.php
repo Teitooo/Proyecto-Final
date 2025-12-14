@@ -22,6 +22,9 @@ Route::get('/acerca-de', function() {
     return view('web.about');
 })->name('about');
 Route::get('/producto/{id}', [WebController::class, 'show'])->name('web.show');
+Route::get('/contacto', function(){
+    return view('web.contact');
+})->name('web.contact');
 
 Route::get('/carrito', [CarritoController::class, 'mostrar'])->name('carrito.mostrar');
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
@@ -44,10 +47,7 @@ Route::middleware(['auth'])->group(function(){
         return view('dashboard');
     })->name('dashboard');
 
-    Route::post('logout', function(){
-        Auth::logout();
-        return redirect('/login');
-    })->name('logout');
+        Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/perfil', [PerfilController::class, 'edit'])->name('perfil.edit');
     Route::put('/perfil', [PerfilController::class, 'update'])->name('perfil.update');

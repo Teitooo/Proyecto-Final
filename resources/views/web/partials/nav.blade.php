@@ -6,9 +6,15 @@
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+<<<<<<< HEAD
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('catalog') ? 'active' : '' }}" href="{{ route('catalog') }}">Catálogo</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">Acerca de</a></li>
+=======
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Sobre Nosotros</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Tienda</a></li>
+>>>>>>> 00fdd652baaea189ca4008f8eda782f8447020a3
                 
                 <li class="nav-item dropdown">
                     @auth
@@ -20,6 +26,12 @@
                             <hr class="dropdown-divider" />
                         </li>
                         <li><a class="dropdown-item" href="{{route('perfil.edit')}}">Mi perfil</a></li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                            </form>
+                        </li>
                     </ul>
                     @else
                         <a class="nav-link" href="{{ route('login') }}">Iniciar sesión</a>

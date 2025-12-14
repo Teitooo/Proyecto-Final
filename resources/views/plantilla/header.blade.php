@@ -43,11 +43,11 @@
                     <!--begin::Menu Footer-->
                     <li class="user-footer">
                         <a href="{{route('perfil.edit')}}" class="btn btn-default btn-flat">Perfil</a>
-                        <a href="#" onclick="document.getElementById('logout-form').submit();" class="btn btn-default btn-flat float-end">Cerrar sesión</a>
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline float-end">
+                            @csrf
+                            <button type="submit" class="btn btn-default btn-flat">Cerrar sesión</button>
+                        </form>
                     </li>
-                    <form action="{{route('logout')}}" id="logout-form" method="post" class="d-none">
-                        @csrf
-                    </form>
                     <!--end::Menu Footer-->
                 </ul>
             </li>
