@@ -7,7 +7,7 @@
       href="/"
       class="link-dark text-center link-offset-2 link-opacity-100 link-opacity-50-hover"
     >
-      <h1 class="mb-0"><b>Sistema</b>LTE</h1>
+      <h1 class="mb-0"><b>Medical</b>Supplies</h1>
     </a>
   </div>
   <div class="card-body login-card-body">
