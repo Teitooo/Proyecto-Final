@@ -12,6 +12,35 @@ use Illuminate\Support\Str;
 class ProductoController extends Controller
 {
     use AuthorizesRequests;
+
+    protected $marcas = [
+        'Siemens Healthineers',
+        'GE Healthcare',
+        'Philips Healthcare',
+        'Medtronic',
+        'Becton Dickinson (BD)',
+        'Dräger',
+        'Fresenius Medical Care',
+        '3M Health Care',
+        'Johnson & Johnson (Medical Devices)',
+        'Cardinal Health',
+        'B. Braun',
+        'Smith & Nephew',
+        'Roche Diagnostics',
+        'Abbott Diagnostics',
+        'Thermo Fisher Scientific',
+        'Bio-Rad Laboratories',
+        'Stryker',
+        'Zimmer Biomet',
+        'DePuy Synthes',
+        'Omron Healthcare',
+        'Invacare',
+        'Drive Medical',
+        'Coloplast',
+        'Convatec',
+        'Hartmann'
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -32,7 +61,8 @@ class ProductoController extends Controller
     public function create()
     {
         $this->authorize('producto-create'); 
-        return view('producto.action');
+        $marcas = $this->marcas;
+        return view('producto.action', compact('marcas'));
     }
 
     /**
@@ -74,7 +104,8 @@ class ProductoController extends Controller
     {
         $this->authorize('producto-edit'); 
         $registro=Producto::findOrFail($id);
-        return view('producto.action', compact('registro'));
+        $marcas = $this->marcas;
+        return view('producto.action', compact('registro', 'marcas'));
     }
 
     /**

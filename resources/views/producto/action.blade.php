@@ -44,8 +44,15 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="marca" class="form-label">Marca</label>
-                                    <input type="text" class="form-control @error('marca') is-invalid @enderror"
-                                     id="marca" name="marca" value="{{old('marca',  $registro->marca ??'')}}" placeholder="Ej: Philips, 3M, Medtronic">
+                                    <select class="form-control @error('marca') is-invalid @enderror"
+                                     id="marca" name="marca">
+                                        <option value="">-- Selecciona una marca --</option>
+                                        @foreach($marcas ?? [] as $marca)
+                                            <option value="{{ $marca }}" {{ old('marca', $registro->marca ?? '') == $marca ? 'selected' : '' }}>
+                                                {{ $marca }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                      @error('marca')
                                         <small class="text-danger">{{$message}}</small>
                                      @enderror
