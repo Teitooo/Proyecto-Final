@@ -34,11 +34,14 @@ Route::get('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->na
 Route::get('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
 
 Route::middleware(['auth'])->group(function(){
-    Route::resource('usuarios', UserController::class);
-    Route::patch('usuarios/{usuario}/toggle', [UserController::class, 'toggleStatus'])->name('usuarios.toggle');
-    Route::resource('roles', RoleController::class);
-    Route::resource('productos', ProductoController::class);
-    Route::resource('inventarios', InventarioController::class);
+    // Rutas solo para ADMINS - Protegidas con middleware
+    Route::middleware(['admin.only'])->group(function(){
+        Route::resource('usuarios', UserController::class);
+        Route::patch('usuarios/{usuario}/toggle', [UserController::class, 'toggleStatus'])->name('usuarios.toggle');
+        Route::resource('roles', RoleController::class);
+        Route::resource('productos', ProductoController::class);
+        Route::resource('inventarios', InventarioController::class);
+    });
 
     Route::get('/checkout', [PedidoController::class, 'checkout'])->name('pedido.checkout');
     Route::post('/pedido/realizar', [PedidoController::class, 'realizar'])->name('pedido.realizar');
