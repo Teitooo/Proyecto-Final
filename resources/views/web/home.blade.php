@@ -3,6 +3,20 @@
 @section('titulo', 'Medical Supplies - Equipos y Productos Médicos')
 
 @section('contenido')
+<style>
+    /* Hero buttons: responsive, wrap on small screens and maintain spacing when zooming */
+    .hero-buttons{ display:flex; gap:1rem; align-items:center; flex-wrap:wrap }
+    .hero-buttons .btn{ min-width:160px; display:inline-flex; align-items:center; justify-content:center; gap:.5rem }
+    .hero-buttons .btn .fas{ margin-left:6px }
+
+    /* Ensure outline variant looks consistent */
+    .btn-outline{ border:1px solid rgba(13,110,253,0.15); color:var(--bs-primary, #0d6efd); background:transparent }
+
+    @media (max-width:768px){
+        .hero-buttons{ justify-content:center }
+        .hero-buttons .btn{ flex:1 1 100%; min-width:0; max-width:420px }
+    }
+</style>
     <!-- Welcome Banner -->
     <div class="welcome-banner">
         <div class="banner-bg"></div>

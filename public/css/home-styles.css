@@ -470,6 +470,15 @@ p {
     transform: rotate(3deg);
 }
 
+/* Make decorative elements non-interactive so buttons remain clickable
+   and keep them behind the actual content and images */
+.image-bg-decoration,
+.hero-decoration,
+.banner-bg {
+    pointer-events: none;
+    z-index: 0; /* behind the main content */
+}
+
 .image-wrapper {
     position: relative;
     border-radius: 1.5rem;
@@ -523,6 +532,15 @@ p {
     opacity: 0.3;
     animation: pulse 4s ease-in-out infinite;
 }
+
+/* Ensure hero content (text/buttons) sits above decorations */
+.hero-content{ position: relative; z-index: 5 }
+
+/* Ensure the image wrapper is above decorations */
+.image-wrapper{ position: relative; z-index: 3 }
+
+/* Keep hero buttons clickable on all zoom levels */
+.hero-buttons .btn{ position: relative; z-index: 10 }
 
 .hero-decoration-top {
     top: 5rem;
