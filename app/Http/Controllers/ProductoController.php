@@ -77,6 +77,7 @@ class ProductoController extends Controller
         $registro->precio=$request->input('precio');
         $registro->descripcion=$request->input('descripcion');
         $registro->marca=$request->input('marca');
+        $registro->categoria=$request->input('categoria');
         $sufijo=strtolower(Str::random(2));
         $image = $request->file('imagen');
         if (!is_null($image)){            
@@ -120,6 +121,7 @@ class ProductoController extends Controller
         $registro->precio=$request->input('precio');
         $registro->descripcion=$request->input('descripcion');
         $registro->marca=$request->input('marca');
+        $registro->categoria=$request->input('categoria');
         $sufijo=strtolower(Str::random(2));
         $image = $request->file('imagen');
         if (!is_null($image)){            

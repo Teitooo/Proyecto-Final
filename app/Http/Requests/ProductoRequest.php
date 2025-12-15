@@ -29,6 +29,8 @@ class ProductoRequest extends FormRequest
             'nombre' => ['required', 'string', 'max:100'],
             'precio' => ['required', 'numeric', 'min:0'],
             'descripcion' => ['nullable', 'string', 'max:1000'],
+            'marca' => ['nullable', 'string', 'max:255'],
+            'categoria' => ['nullable', 'string', 'max:255'],
             'imagen' => [$method === 'POST' ? 'required' : 'nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ];
         return $rules;
