@@ -79,11 +79,14 @@ class ProductoController extends Controller
         $registro->marca=$request->input('marca');
         $registro->categoria=$request->input('categoria');
         $sufijo=strtolower(Str::random(2));
-        $image = $request->file('imagen');
-        if (!is_null($image)){            
-            $nombreImagen=$sufijo.'-'.$image->getClientOriginalName();
-            $image->move('uploads/productos', $nombreImagen);
-            $registro->imagen = $nombreImagen;
+        
+        if ($request->hasFile('imagen')) {
+            $image = $request->file('imagen');
+            if ($image->isValid()) {
+                $nombreImagen = $sufijo.'-'.time().'.'.$image->getClientOriginalExtension();
+                $image->move('uploads/productos', $nombreImagen);
+                $registro->imagen = $nombreImagen;
+            }
         }
 
         $registro->save();
@@ -123,15 +126,18 @@ class ProductoController extends Controller
         $registro->marca=$request->input('marca');
         $registro->categoria=$request->input('categoria');
         $sufijo=strtolower(Str::random(2));
-        $image = $request->file('imagen');
-        if (!is_null($image)){            
-            $nombreImagen=$sufijo.'-'.$image->getClientOriginalName();
-            $image->move('uploads/productos', $nombreImagen);
-            $old_image = 'uploads/productos/'.$registro->imagen;
-            if (file_exists($old_image)) {
-                @unlink($old_image);
+        
+        if ($request->hasFile('imagen')) {
+            $image = $request->file('imagen');
+            if ($image->isValid()) {
+                $nombreImagen = $sufijo.'-'.time().'.'.$image->getClientOriginalExtension();
+                $image->move('uploads/productos', $nombreImagen);
+                $old_image = 'uploads/productos/'.$registro->imagen;
+                if (file_exists($old_image)) {
+                    @unlink($old_image);
+                }
+                $registro->imagen = $nombreImagen;
             }
-            $registro->imagen = $nombreImagen;
         }
 
         $registro->save();
