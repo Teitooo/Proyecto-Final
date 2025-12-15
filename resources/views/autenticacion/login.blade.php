@@ -85,7 +85,13 @@
   }
   .btn-login-primary:active{ transform: translateY(1px) }
 
-  .alert-info{ background: linear-gradient(90deg,var(--accent),#a5f3fc); border:0 }
+  .alert-info{ 
+    background: linear-gradient(90deg, rgba(52, 152, 255, 0.08), rgba(13, 202, 240, 0.08));
+    border: 1px solid rgba(52, 152, 255, 0.3);
+    color: var(--primary-dark);
+    border-radius: 12px;
+  }
+  .alert-info .btn-close{ filter: invert(0.2); }
 
   /* Recuperar password: sin subrayado y separacion */
   .password-recover{ margin-top: 1rem; margin-bottom: 1.25rem; text-align: center }
