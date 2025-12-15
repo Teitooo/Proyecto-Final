@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/checkout', [PedidoController::class, 'checkout'])->name('pedido.checkout');
     Route::post('/pedido/realizar', [PedidoController::class, 'realizar'])->name('pedido.realizar');
     Route::get('/pedido/confirmacion/{id}', [PedidoController::class, 'confirmacion'])->name('pedido.confirmacion');
-    Route::get('/perfil/pedidos', [PedidoController::class, 'index'])->name('perfil.pedidos');
+    Route::get('/perfil/pedidos', [PedidoController::class, 'misPedidos'])->name('perfil.pedidos');
     Route::patch('/pedidos/{id}/estado', [PedidoController::class, 'cambiarEstado'])->name('pedidos.cambiar.estado');    
 
     Route::get('dashboard', function(){

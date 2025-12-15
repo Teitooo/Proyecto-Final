@@ -168,4 +168,20 @@ class PedidoController extends Controller
 
         return redirect()->back()->with('mensaje', 'El estado del pedido fue actualizado a "' . ucfirst($estadoNuevo) . '"');
     }
+
+    public function misPedidos(Request $request){
+        $texto = $request->input('texto');
+        $query = Pedido::with('detalles.producto')
+                    ->where('user_id', auth()->id())
+                    ->orderBy('id', 'desc');
+
+        // Búsqueda
+        if (!empty($texto)) {
+            $query->where('id', 'like', "%{$texto}%")
+                  ->orWhere('estado', 'like', "%{$texto}%");
+        }
+
+        $pedidos = $query->paginate(10);
+        return view('web.mis-pedidos', compact('pedidos', 'texto'));
+    }
 }

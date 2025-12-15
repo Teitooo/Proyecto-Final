@@ -1,0 +1,361 @@
+/* My Orders Page Styles */
+
+.my-pedidos-section {
+    padding: 60px 0 !important;
+    background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%) !important;
+    min-height: calc(100vh - 200px) !important;
+}
+
+/* Header */
+.my-pedidos-section h1 {
+    color: var(--primary) !important;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.my-pedidos-section > .container > .mb-5 > p {
+    color: var(--gray-500);
+    font-size: 1.05rem;
+}
+
+/* Alert */
+.my-pedidos-section .alert {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+.my-pedidos-section .alert-success {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+    color: #10b981;
+}
+
+/* Search Form */
+.my-pedidos-section .input-group {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.my-pedidos-section .input-group .form-control {
+    border: 1px solid var(--gray-200);
+    padding: 12px 16px;
+    font-size: 0.95rem;
+}
+
+.my-pedidos-section .input-group .form-control:focus {
+    border-color: var(--primary-light);
+    box-shadow: none;
+}
+
+.my-pedidos-section .input-group .btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border: none;
+}
+
+/* Card Styling */
+.my-pedidos-section .card {
+    border: 1px solid var(--gray-200) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.my-pedidos-section .card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Card Header */
+.my-pedidos-section .card-header {
+    background: linear-gradient(135deg, var(--primary) 0%, #0052a3 100%) !important;
+    color: var(--white) !important;
+    padding: 20px !important;
+    border: none !important;
+}
+
+.my-pedidos-section .card-header h6 {
+    color: var(--white) !important;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.my-pedidos-section .card-header small {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Badge Status */
+.my-pedidos-section .badge {
+    padding: 8px 12px !important;
+    border-radius: 20px !important;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* Collapse Button */
+.my-pedidos-section .btn-light {
+    border: 1px solid var(--gray-200);
+    color: var(--gray-700);
+    transition: all 0.3s ease;
+}
+
+.my-pedidos-section .btn-light:hover {
+    background: var(--gray-50);
+    border-color: var(--primary-light);
+    color: var(--primary);
+}
+
+/* Card Body */
+.my-pedidos-section .card-body {
+    padding: 24px;
+}
+
+/* Shipping Info Row */
+.my-pedidos-section .card-body .row:first-child {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.my-pedidos-section .card-body h6 {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.my-pedidos-section .card-body p {
+    color: var(--gray-600);
+    margin-bottom: 0;
+}
+
+/* Notes Box */
+.my-pedidos-section .notes-box {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(0, 102, 204, 0.04) 100%) !important;
+    border-left: 4px solid var(--primary-light) !important;
+    border-radius: 8px;
+    padding: 16px !important;
+    margin-bottom: 24px;
+}
+
+.my-pedidos-section .notes-box h6 {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.my-pedidos-section .notes-box p {
+    color: var(--gray-700);
+    white-space: pre-wrap;
+    margin-bottom: 0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* Table Styles */
+.my-pedidos-section .table {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+}
+
+.my-pedidos-section .table thead {
+    background: #f9fafb;
+    border-bottom: 2px solid var(--gray-200);
+}
+
+.my-pedidos-section .table thead th {
+    color: var(--gray-700);
+    font-weight: 600;
+    border: none;
+    padding: 12px 16px;
+}
+
+.my-pedidos-section .table tbody td {
+    vertical-align: middle;
+    padding: 12px 16px;
+    border-color: var(--gray-100);
+}
+
+.my-pedidos-section .table tbody tr:hover {
+    background: #f9fafb;
+}
+
+.my-pedidos-section .table tbody strong {
+    color: var(--gray-900);
+}
+
+.my-pedidos-section .table tbody small {
+    color: var(--gray-500);
+}
+
+/* Total Box */
+.my-pedidos-section .total-box {
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 20px;
+}
+
+.my-pedidos-section .total-box .d-flex {
+    margin-bottom: 8px;
+    color: var(--gray-700);
+}
+
+.my-pedidos-section .total-box .d-flex:last-child {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary);
+    border-top: 1px solid var(--gray-200);
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+/* Empty State */
+.my-pedidos-section .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.my-pedidos-section .empty-state .empty-icon {
+    font-size: 3rem;
+    color: var(--gray-300);
+    margin-bottom: 15px;
+}
+
+.my-pedidos-section .empty-state h4 {
+    color: var(--gray-600);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.my-pedidos-section .empty-state p {
+    color: var(--gray-500);
+    margin-bottom: 25px;
+}
+
+/* Actions */
+.my-pedidos-section .card-body .mt-4 {
+    margin-top: 24px !important;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-200);
+}
+
+.my-pedidos-section .btn-outline-secondary {
+    border: 2px solid var(--gray-300);
+    color: var(--gray-700);
+    transition: all 0.3s ease;
+}
+
+.my-pedidos-section .btn-outline-secondary:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(14, 165, 233, 0.05);
+}
+
+/* Pagination */
+.my-pedidos-section .pagination {
+    margin-top: 40px;
+}
+
+.my-pedidos-section .page-link {
+    border: 1px solid var(--gray-200);
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+.my-pedidos-section .page-link:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-light);
+    color: var(--white);
+}
+
+.my-pedidos-section .page-item.active .page-link {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .my-pedidos-section h1 {
+        font-size: 1.75rem;
+    }
+
+    .my-pedidos-section .card-header .row {
+        gap: 15px;
+    }
+
+    .my-pedidos-section .card-header .col-md-3 {
+        text-align: left !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .my-pedidos-section {
+        padding: 40px 0 !important;
+    }
+
+    .my-pedidos-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .my-pedidos-section .card-body {
+        padding: 16px;
+    }
+
+    .my-pedidos-section .card-header {
+        padding: 16px !important;
+    }
+
+    .my-pedidos-section .card-header .row {
+        gap: 12px;
+    }
+
+    .my-pedidos-section .card-header .col-md-3 {
+        flex: 0 0 100%;
+    }
+
+    .my-pedidos-section .card-header h6 {
+        font-size: 0.9rem;
+    }
+
+    .my-pedidos-section .table {
+        font-size: 0.85rem;
+    }
+
+    .my-pedidos-section .table thead th {
+        padding: 8px 12px;
+    }
+
+    .my-pedidos-section .table tbody td {
+        padding: 8px 12px;
+    }
+
+    .my-pedidos-section .btn-sm {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .my-pedidos-section .empty-state {
+        padding: 40px 15px;
+    }
+
+    .my-pedidos-section .empty-state .empty-icon {
+        font-size: 2.5rem;
+    }
+}
+
+/* Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.my-pedidos-section .card {
+    animation: slideIn 0.5s ease-out;
+}
