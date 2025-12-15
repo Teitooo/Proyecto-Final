@@ -40,7 +40,7 @@ class WebController extends Controller
             }
         }
         // Obtener productos filtrados
-        $productos = $query->paginate(3);
+        $productos = $query->paginate(4);
         
         // Contar productos por categoría
         $categoryCounts = [

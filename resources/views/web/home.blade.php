@@ -240,37 +240,35 @@
 
             <!-- Products Section -->
             @if($productos->count() > 0)
-                <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-lg-3">
+                <div class="products-grid">
                     @foreach($productos as $producto)
-                        <div class="col mb-5">
-                            <div class="product-card">
-                                <!-- Product Image -->
-                                <div class="product-image">
-                                    <img src="{{asset('uploads/productos/'. $producto->imagen) }}"
-                                         alt="{{$producto->nombre}}"
-                                         style="width: 100%; height: 250px; object-fit: cover;">
-                                </div>
+                        <div class="product-card">
+                            <!-- Product Image -->
+                            <div class="product-image">
+                                <img src="{{asset('uploads/productos/'. $producto->imagen) }}"
+                                     alt="{{$producto->nombre}}"
+                                     style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
 
-                                <!-- Product Details -->
-                                <div class="product-info">
-                                    <h5 class="product-name">{{$producto->nombre}}</h5>
-                                    <p class="product-description">{{Str::limit($producto->descripcion ?? '', 50)}}</p>
-                                    <div class="product-price">
-                                        ${{ number_format($producto->precio, 2) }}
-                                    </div>
+                            <!-- Product Details -->
+                            <div class="product-info">
+                                <h5 class="product-name">{{$producto->nombre}}</h5>
+                                <p class="product-description">{{Str::limit($producto->descripcion ?? '', 50)}}</p>
+                                <div class="product-price">
+                                    ${{ number_format($producto->precio, 2) }}
                                 </div>
+                            </div>
 
-                                <!-- Product Actions -->
-                                <div class="product-actions">
-                                    <a class="btn-action" 
-                                       href="{{route('web.show', $producto->id)}}">
-                                        <i class="bi bi-eye"></i> Ver
-                                    </a>
-                                    <button class="btn-action btn-cart" 
-                                            onclick="addToCart({{$producto->id}})">
-                                        <i class="bi bi-cart-plus"></i>
-                                    </button>
-                                </div>
+                            <!-- Product Actions -->
+                            <div class="product-actions">
+                                <a class="btn-action" 
+                                   href="{{route('web.show', $producto->id)}}">
+                                    <i class="bi bi-eye"></i> Ver
+                                </a>
+                                <button class="btn-action btn-cart" 
+                                        onclick="addToCart({{$producto->id}})">
+                                    <i class="bi bi-cart-plus"></i> Agregar
+                                </button>
                             </div>
                         </div>
                     @endforeach
