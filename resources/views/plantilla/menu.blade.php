@@ -27,14 +27,16 @@
                         </p>
                     </a>
                 </li>
+                @if(!auth()->user()->hasRole('admin'))
                 <li class="nav-item">
                     <a href="{{route('perfil.pedidos')}}" class="nav-link" id="mnuPedidos">
                         <i class="nav-icon bi bi-bag-fill"></i>
                         <p>
-                            Pedidos
+                            Mis Pedidos
                         </p>
                     </a>
                 </li>
+                @endif
                 @canany(['user-list', 'rol-list', 'pedido-edit-status'])
                 <li class="nav-item" id="mnuSeguridad">
                     <a href="#" class="nav-link">
