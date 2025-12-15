@@ -153,4 +153,42 @@ class ProductoController extends Controller
         $registro->delete();
         return redirect()->route('productos.index')->with('mensaje', $registro->nombre. ' eliminado correctamente.');
     }
+
+    /**
+     * Delete multiple products at once
+     */
+    public function eliminarMasivo(Request $request)
+    {
+        $this->authorize('producto-delete');
+        
+        $productoIds = $request->input('productos', []);
+        
+        if (empty($productoIds)) {
+            return redirect()->route('productos.index')->with('error', 'No seleccionó ningún producto');
+        }
+
+        $count = 0;
+        $errores = 0;
+        
+        foreach ($productoIds as $id) {
+            try {
+                $producto = Producto::findOrFail($id);
+                $old_image = 'uploads/productos/' . $producto->imagen;
+                if (file_exists($old_image)) {
+                    @unlink($old_image);
+                }
+                $producto->delete();
+                $count++;
+            } catch (\Exception $e) {
+                $errores++;
+            }
+        }
+
+        $mensaje = $count . ' producto(s) eliminado(s) correctamente.';
+        if ($errores > 0) {
+            $mensaje .= ' (' . $errores . ' no pudieron eliminarse por tener relaciones)';
+        }
+
+        return redirect()->route('productos.index')->with('mensaje', $mensaje);
+    }
 }

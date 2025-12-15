@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function(){
         Route::patch('usuarios/{usuario}/toggle', [UserController::class, 'toggleStatus'])->name('usuarios.toggle');
         Route::resource('roles', RoleController::class);
         Route::resource('productos', ProductoController::class);
+        Route::post('productos/eliminar-masivo', [ProductoController::class, 'eliminarMasivo'])->name('productos.eliminar-masivo');
         Route::resource('inventarios', InventarioController::class);
     });
 

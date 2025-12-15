@@ -153,8 +153,8 @@ class WebController extends Controller
         // Renderizar vista parcial
         $html = view('web.partials.producto-card', compact('productos'))->render();
         
-        // Renderizar paginación
-        $pagination = $productos->render('pagination::bootstrap-4');
+        // Renderizar paginación (convertir a string)
+        $pagination = (string)$productos->render('pagination::bootstrap-4');
         
         return response()->json([
             'html' => $html,
