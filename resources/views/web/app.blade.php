@@ -25,6 +25,7 @@
     <link href="{{ asset('css/home-styles.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/carrito-styles.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/confirmacion-styles.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/checkout-styles.css') }}" rel="stylesheet" />
     
     @stack('estilos')
 </head>
