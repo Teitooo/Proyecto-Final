@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('productos', function (Blueprint $table) {
-            $table->string('categoria')->nullable()->after('marca');
+            // Solo agregar si no existe
+            if (!Schema::hasColumn('productos', 'categoria')) {
+                $table->string('categoria')->nullable()->after('marca');
+            }
         });
     }
 
