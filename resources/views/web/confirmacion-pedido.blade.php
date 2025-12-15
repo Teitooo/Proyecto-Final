@@ -33,7 +33,7 @@
 
                             <div class="detail-row">
                                 <span class="detail-label">Fecha:</span>
-                                <span class="detail-value">{{ $pedido->created_at->format('d/m/Y H:i') }}</span>
+                                <span class="detail-value">{{ $pedido->created_at ? $pedido->created_at->format('d/m/Y H:i') : 'N/A' }}</span>
                             </div>
 
                             <div class="detail-row">

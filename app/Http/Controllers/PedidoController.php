@@ -86,9 +86,9 @@ class PedidoController extends Controller
             foreach ($carrito as $productoId => $item) {
                 PedidoDetalle::create([
                     'pedido_id' => $pedido->id, 
-                    'producto_id' => $productoId,
-                    'cantidad' => $item['cantidad'], 
-                    'precio' => $item['precio'],
+                    'producto_id' => (int)$productoId,
+                    'cantidad' => (int)$item['cantidad'], 
+                    'precio' => (float)$item['precio'],
                 ]);
 
                 // Restar del inventario si existe
@@ -114,16 +114,19 @@ class PedidoController extends Controller
             session()->forget('carrito');
             DB::commit();
             
+            \Log::info('Pedido creado exitosamente', ['pedido_id' => $pedido->id, 'user_id' => $pedido->user_id]);
+            
             // Redirigir a la vista de confirmación
-            return redirect()->route('pedido.confirmacion', $pedido->id);
+            return redirect()->route('pedido.confirmacion', ['id' => $pedido->id]);
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Hubo un error al procesar el pedido: ' . $e->getMessage());
+            \Log::error('Error al procesar pedido: ' . $e->getMessage(), ['exception' => $e]);
+            return redirect()->back()->with('error', 'Hubo un error al procesar el pedido. Por favor, intenta de nuevo o contacta con soporte.');
         }
     }
 
     public function confirmacion($id){
-        $pedido = Pedido::with('detalles.producto')->findOrFail($id);
+        $pedido = Pedido::with('detalles.producto', 'user')->findOrFail($id);
         
         // Verificar que el pedido pertenezca al usuario autenticado
         if ($pedido->user_id !== auth()->id()) {
