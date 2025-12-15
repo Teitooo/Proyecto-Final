@@ -6,21 +6,30 @@
                 @method('PATCH')
                 <div class="modal-header">
                     <h4 class="modal-title">Cambiar estado del pedido # {{$reg->id}}</h4>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p>Seleccione el nuevo estado:</p>
                     <div class="form-group">
                         <select name="estado" class="form-control">
-                            @can('pedido-anulate')
-                            <option value="enviado">Enviado</option>
-                            <option value="anulado">Anulado</option>
-                            <option value="devuelto">Devuelto</option>
-                            <option value="en espera">En espera</option>
-                            @endcan
-                            @can('pedido-cancel')
-                            <option value="cancelado">Cancelado</option>
-                            @endcan
+                            @if(auth()->user()->hasRole('admin'))
+                                <option value="pendiente">Pendiente</option>
+                                <option value="en espera">En Espera</option>
+                                <option value="enviado">Enviado</option>
+                                <option value="devuelto">Devuelto</option>
+                                <option value="anulado">Anulado</option>
+                                <option value="cancelado">Cancelado</option>
+                            @else
+                                @can('pedido-anulate')
+                                <option value="enviado">Enviado</option>
+                                <option value="anulado">Anulado</option>
+                                <option value="devuelto">Devuelto</option>
+                                <option value="en espera">En espera</option>
+                                @endcan
+                                @can('pedido-cancel')
+                                <option value="cancelado">Cancelado</option>
+                                @endcan
+                            @endif
                         </select>
                     </div>
                 </div>

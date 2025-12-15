@@ -13,10 +13,10 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div>
-                            <form action="{{route('productos.index')}}" method="get">
+                            <form action="{{route('pedidos.admin')}}" method="get">
                                 <div class="input-group">
                                     <input name="texto" type="text" class="form-control" value="{{$texto}}"
-                                        placeholder="Ingrese texto a buscar">
+                                        placeholder="Buscar por ID, usuario o estado">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i>
                                             Buscar</button>

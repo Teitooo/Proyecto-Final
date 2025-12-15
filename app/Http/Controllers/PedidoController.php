@@ -15,22 +15,17 @@ class PedidoController extends Controller
         $texto = $request->input('texto');
         $query = Pedido::with('user', 'detalles.producto')->orderBy('id', 'desc');
 
-        // Permisos
-        if (auth()->user()->can('pedido-list')) {
-            // Puede ver todos los pedidos
-        } elseif (auth()->user()->can('pedido-view')) {
-            // Solo puede ver sus propios pedidos
-            $query->where('user_id', auth()->id());
-        } else {
-            abort(403, 'No tienes permisos para ver pedidos.');
-        }
-
-        // Búsqueda por nombre del usuario
+        // Búsqueda por nombre del usuario o ID del pedido
         if (!empty($texto)) {
-            $query->whereHas('user', function ($q) use ($texto) {
-                $q->where('name', 'like', "%{$texto}%");
+            $query->where(function($q) use ($texto) {
+                $q->where('id', 'like', "%{$texto}%")
+                  ->orWhere('estado', 'like', "%{$texto}%")
+                  ->orWhereHas('user', function ($subQ) use ($texto) {
+                      $subQ->where('name', 'like', "%{$texto}%");
+                  });
             });
         }
+        
         $registros = $query->paginate(10);
         return view('pedido.index', compact('registros', 'texto'));
     }
@@ -143,16 +138,23 @@ class PedidoController extends Controller
         $estadoNuevo = $request->input('estado');
 
         // Validar que el estado nuevo sea uno permitido
-        $estadosPermitidos = ['enviado', 'anulado', 'cancelado'];
+        $estadosPermitidos = ['enviado', 'anulado', 'cancelado', 'devuelto', 'en espera', 'pendiente'];
 
         if (!in_array($estadoNuevo, $estadosPermitidos)) {
             abort(403, 'Estado no válido');
         }
 
-        // Verificar permisos según el estado
-        if (in_array($estadoNuevo, ['enviado', 'anulado'])) {
+        // Los admins pueden cambiar cualquier estado
+        if (auth()->user()->hasRole('admin')) {
+            $pedido->estado = $estadoNuevo;
+            $pedido->save();
+            return redirect()->back()->with('mensaje', 'El estado del pedido #' . $id . ' fue actualizado a "' . ucfirst($estadoNuevo) . '"');
+        }
+
+        // Verificar permisos según el estado para no-admins
+        if (in_array($estadoNuevo, ['enviado', 'anulado', 'devuelto', 'en espera'])) {
             if (!auth()->user()->can('pedido-anulate')) {
-                abort(403, 'No tiene permiso para cambiar a "enviado" o "anulado"');
+                abort(403, 'No tiene permiso para cambiar a este estado');
             }
         }
 

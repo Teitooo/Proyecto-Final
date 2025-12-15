@@ -35,7 +35,7 @@
                         </p>
                     </a>
                 </li>
-                @canany(['user-list', 'rol-list'])
+                @canany(['user-list', 'rol-list', 'pedido-edit-status'])
                 <li class="nav-item" id="mnuSeguridad">
                     <a href="#" class="nav-link">
                         <i class="nav-icon bi bi-shield-lock"></i>
@@ -45,6 +45,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @can('pedido-edit-status')
+                        <li class="nav-item">
+                            <a href="{{route('pedidos.admin')}}" class="nav-link" id="itemPedidosAdmin">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Todos los Pedidos</p>
+                            </a>
+                        </li>
+                        @endcan
                         @can('user-list')
                         <li class="nav-item">
                             <a href="{{route('usuarios.index')}}" class="nav-link" id="itemUsuario">

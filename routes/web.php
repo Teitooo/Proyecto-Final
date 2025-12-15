@@ -43,11 +43,16 @@ Route::middleware(['auth'])->group(function(){
         Route::resource('inventarios', InventarioController::class);
     });
 
+    // Rutas para admins - Ver todos los pedidos
+    Route::middleware(['admin.only'])->group(function(){
+        Route::get('/administracion/pedidos', [PedidoController::class, 'index'])->name('pedidos.admin');
+        Route::patch('/administracion/pedidos/{id}/estado', [PedidoController::class, 'cambiarEstado'])->name('pedidos.cambiar.estado');
+    });
+
     Route::get('/checkout', [PedidoController::class, 'checkout'])->name('pedido.checkout');
     Route::post('/pedido/realizar', [PedidoController::class, 'realizar'])->name('pedido.realizar');
     Route::get('/pedido/confirmacion/{id}', [PedidoController::class, 'confirmacion'])->name('pedido.confirmacion');
-    Route::get('/perfil/pedidos', [PedidoController::class, 'misPedidos'])->name('perfil.pedidos');
-    Route::patch('/pedidos/{id}/estado', [PedidoController::class, 'cambiarEstado'])->name('pedidos.cambiar.estado');    
+    Route::get('/perfil/pedidos', [PedidoController::class, 'misPedidos'])->name('perfil.pedidos');    
 
     Route::get('dashboard', function(){
         return view('dashboard');
