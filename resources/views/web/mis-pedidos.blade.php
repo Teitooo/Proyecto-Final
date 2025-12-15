@@ -6,7 +6,7 @@
         <!-- Header -->
         <div class="mb-5">
             <h1 class="fw-bold mb-2">
-                <i class="fas fa-box me-3"></i>Pedidos
+                <i class="fas fa-box me-3"></i>Mis Pedidos
             </h1>
             <p class="text-muted">Visualiza el estado de tus pedidos y los detalles de cada uno</p>
         </div>

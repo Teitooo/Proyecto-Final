@@ -24,9 +24,15 @@
                      <i class="fas fa-user"></i> {{auth()->user()->name}}
                 </button>
                 <ul id="dropdownMenu" class="dropdown-menu" style="display: none; position: absolute; background: white; border: 1px solid #ddd; border-radius: 4px; min-width: 200px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000;">
+                    @if(auth()->user()->hasRole('admin'))
+                    <li><a class="dropdown-item" href="{{ route('pedidos.admin') }}" style="display: block; padding: 10px 15px; color: #333; text-decoration: none;">
+                            <i class="fas fa-box"></i> Todos los pedidos
+                        </a></li>
+                    @else
                     <li><a class="dropdown-item" href="{{ route('perfil.pedidos') }}" style="display: block; padding: 10px 15px; color: #333; text-decoration: none;">
                             <i class="fas fa-box"></i> Mis pedidos
                         </a></li>
+                    @endif
                     <li>
                         <hr style="margin: 0.5rem 0;">
                     </li>
