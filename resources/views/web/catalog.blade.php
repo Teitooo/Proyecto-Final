@@ -30,80 +30,80 @@
                 <div class="sidebar-section">
                     <div class="search-box-catalog">
                         <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Buscar productos...">
+                        <input type="text" id="searchInput" placeholder="Buscar productos..." onchange="filterProducts()">
                     </div>
-                </div>
-
-                <!-- Categories Filter -->
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">
-                        <i class="fas fa-filter"></i>
-                        Categorías
-                    </h3>
-                    <div class="filter-options">
-                        <label class="filter-checkbox">
-                            <input type="checkbox" value="all" checked>
-                            <span>Todos los productos</span>
-                            <span class="filter-count">{{ $categoryCounts['all'] ?? 0 }}</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox" value="diagnostico">
-                            <span>Diagnóstico</span>
-                            <span class="filter-count">{{ $categoryCounts['diagnostico'] ?? 0 }}</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox" value="cirugia">
-                            <span>Cirugía</span>
-                            <span class="filter-count">{{ $categoryCounts['cirugia'] ?? 0 }}</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox" value="urgencias">
-                            <span>Urgencias</span>
-                            <span class="filter-count">{{ $categoryCounts['urgencias'] ?? 0 }}</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox" value="laboratorio">
-                            <span>Laboratorio</span>
-                            <span class="filter-count">{{ $categoryCounts['laboratorio'] ?? 0 }}</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox" value="rehabilitacion">
-                            <span>Rehabilitación</span>
-                            <span class="filter-count">{{ $categoryCounts['rehabilitacion'] ?? 0 }}</span>
-                        </label>
-                        <label class="filter-checkbox">
-                            <input type="checkbox" value="imagenologia">
-                            <span>Imagenología</span>
-                            <span class="filter-count">{{ $categoryCounts['imagenologia'] ?? 0 }}</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Brands -->
-                <div class="sidebar-section">
-                    <h3 class="sidebar-title">
-                        <i class="fas fa-trademark"></i>
-                        Marcas
-                    </h3>
-                    <div class="filter-options">
-                        @php
-                            $marcas = \App\Models\Producto::whereNotNull('marca')
-                                ->distinct()
-                                ->pluck('marca')
-                                ->sort();
-                        @endphp
-                        @forelse($marcas as $marca)
-                            @php
-                                $count = \App\Models\Producto::where('marca', $marca)->count();
-                            @endphp
+                
+                    <!-- Categories Filter -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">
+                            <i class="fas fa-filter"></i>
+                            Categorías
+                        </h3>
+                        <div class="filter-options">
                             <label class="filter-checkbox">
-                                <input type="checkbox" value="{{ $marca }}" class="brand-filter">
-                                <span>{{ $marca }}</span>
-                                <span class="filter-count">{{ $count }}</span>
+                                <input type="radio" name="categoria" value="all" checked onchange="filterProducts()">
+                                <span>Todos los productos</span>
+                                <span class="filter-count">{{ $categoryCounts['all'] ?? 0 }}</span>
                             </label>
-                        @empty
-                            <p style="color: #999; padding: 10px 0;">No hay marcas disponibles</p>
-                        @endforelse
+                            <label class="filter-checkbox">
+                                <input type="radio" name="categoria" value="diagnostico" onchange="filterProducts()">
+                                <span>Diagnóstico</span>
+                                <span class="filter-count">{{ $categoryCounts['diagnostico'] ?? 0 }}</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="radio" name="categoria" value="cirugia" onchange="filterProducts()">
+                                <span>Cirugía</span>
+                                <span class="filter-count">{{ $categoryCounts['cirugia'] ?? 0 }}</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="radio" name="categoria" value="urgencias" onchange="filterProducts()">
+                                <span>Urgencias</span>
+                                <span class="filter-count">{{ $categoryCounts['urgencias'] ?? 0 }}</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="radio" name="categoria" value="laboratorio" onchange="filterProducts()">
+                                <span>Laboratorio</span>
+                                <span class="filter-count">{{ $categoryCounts['laboratorio'] ?? 0 }}</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="radio" name="categoria" value="rehabilitacion" onchange="filterProducts()">
+                                <span>Rehabilitación</span>
+                                <span class="filter-count">{{ $categoryCounts['rehabilitacion'] ?? 0 }}</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="radio" name="categoria" value="imagenologia" onchange="filterProducts()">
+                                <span>Imagenología</span>
+                                <span class="filter-count">{{ $categoryCounts['imagenologia'] ?? 0 }}</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Brands -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">
+                            <i class="fas fa-trademark"></i>
+                            Marcas
+                        </h3>
+                        <div class="filter-options" id="marcasContainer">
+                            @php
+                                $marcas = \App\Models\Producto::whereNotNull('marca')
+                                    ->distinct()
+                                    ->pluck('marca')
+                                    ->sort();
+                            @endphp
+                            @forelse($marcas as $marca)
+                                @php
+                                    $count = \App\Models\Producto::where('marca', $marca)->count();
+                                @endphp
+                                <label class="filter-checkbox">
+                                    <input type="checkbox" name="marca" value="{{ $marca }}" class="brand-filter" onchange="filterProducts()">
+                                    <span>{{ $marca }}</span>
+                                    <span class="filter-count">{{ $count }}</span>
+                                </label>
+                            @empty
+                                <p style="color: #999; padding: 10px 0;">No hay marcas disponibles</p>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
             </aside>
@@ -237,4 +237,61 @@
 
 @push('scripts')
     <script src="{{ asset('js/catalog-script.js') }}"></script>
+    <script>
+        function filterProducts() {
+            const search = document.getElementById('searchInput').value;
+            const categoria = document.querySelector('input[name="categoria"]:checked').value;
+            const marcaCheckboxes = document.querySelectorAll('input[name="marca"]:checked');
+            const marca = marcaCheckboxes.length > 0 ? marcaCheckboxes[0].value : '';
+            const sort = document.querySelector('.sort-select') ? document.querySelector('.sort-select').value : 'default';
+
+            // Construir query string
+            const params = new URLSearchParams({
+                search: search,
+                categoria: categoria,
+                marca: marca,
+                sort: sort
+            });
+
+            // Mostrar spinner/loader
+            const productsGrid = document.getElementById('productsGrid');
+            productsGrid.style.opacity = '0.5';
+
+            // Enviar AJAX
+            fetch('{{ route("api.productos") }}?' + params.toString(), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Actualizar grid de productos
+                productsGrid.innerHTML = data.html;
+                
+                // Actualizar paginación
+                const paginationContainer = document.querySelector('.catalog-pagination');
+                if (paginationContainer) {
+                    paginationContainer.innerHTML = data.pagination;
+                }
+                
+                // Actualizar contador de resultados
+                const resultsInfo = document.querySelector('.results-info');
+                if (resultsInfo) {
+                    resultsInfo.innerHTML = `Mostrando <span>${data.count}</span> de <span>${data.count}</span> productos`;
+                }
+                
+                // Restaurar opacidad
+                productsGrid.style.opacity = '1';
+                
+                // Scroll suave al contenido
+                productsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                productsGrid.style.opacity = '1';
+            });
+        }
+    </script>
 @endpush
