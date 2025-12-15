@@ -1,0 +1,279 @@
+/* Confirmation Order Page Styles */
+
+.confirmation-section {
+    background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 60px 0;
+}
+
+/* Confirmation Card */
+.confirmation-card {
+    background: var(--white);
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.confirmation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.confirmation-card .card-body {
+    padding: 3rem;
+}
+
+/* Success Icon */
+.success-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 50%;
+    margin-bottom: 30px;
+    animation: scaleIn 0.6s ease-out;
+}
+
+.success-icon i {
+    font-size: 2.5rem;
+    color: var(--white);
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Titles */
+.confirmation-title {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.75rem;
+    margin-bottom: 12px;
+}
+
+.confirmation-subtitle {
+    color: var(--gray-500);
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+/* Details Boxes */
+.details-box {
+    background: var(--gray-50);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+    border: 1px solid var(--gray-200);
+}
+
+.details-box h6 {
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.detail-row:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.detail-label {
+    color: var(--gray-500);
+    font-size: 0.95rem;
+}
+
+.detail-value {
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.detail-value.total {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.detail-value.total {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+/* Items List */
+.items-list {
+    background: var(--gray-50);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+    border: 1px solid var(--gray-200);
+}
+
+.items-list h6 {
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.item-row:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.item-name {
+    color: var(--gray-700);
+    font-weight: 500;
+}
+
+.item-price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.item-quantity {
+    color: var(--gray-500);
+    font-size: 0.85rem;
+}
+
+.item-total {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* Info Messages */
+.info-message {
+    padding: 12px 15px;
+    border-radius: 6px;
+    border-left: 4px solid;
+    margin-bottom: 15px;
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.info-message i {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.info-message.email-info {
+    background: #e0f2fe;
+    border-left-color: var(--primary);
+    color: #0369a1;
+}
+
+.info-message.delivery-info {
+    background: #f0fdf4;
+    border-left-color: #10b981;
+    color: #166534;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.action-buttons a {
+    flex: 1;
+    padding: 12px 20px;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary-action {
+    background: var(--primary);
+    color: var(--white);
+    border: 2px solid var(--primary);
+}
+
+.btn-primary-action:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: var(--white);
+}
+
+.btn-secondary-action {
+    background: var(--white);
+    color: var(--primary);
+    border: 2px solid var(--gray-300);
+}
+
+.btn-secondary-action:hover {
+    background: var(--gray-50);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .confirmation-card .card-body {
+        padding: 2rem;
+    }
+
+    .confirmation-title {
+        font-size: 1.5rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons a {
+        width: 100%;
+    }
+
+    .detail-row,
+    .item-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .item-price {
+        align-self: flex-end;
+    }
+}

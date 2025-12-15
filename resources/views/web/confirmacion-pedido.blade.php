@@ -1,70 +1,67 @@
 @extends('web.app')
+
 @section('contenido')
 <!-- Confirmation Section -->
-<section class="confirmation-section" style="padding: 60px 0;">
+<section class="confirmation-section">
     <div class="container px-4 px-lg-5">
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <!-- Success Card -->
-                <div class="card text-center" style="border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                    <div class="card-body p-5">
+                <div class="confirmation-card text-center">
+                    <div class="card-body">
                         <!-- Success Icon -->
-                        <div style="margin-bottom: 30px;">
-                            <div style="display: inline-block; width: 80px; height: 80px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-check" style="font-size: 2.5rem; color: white;"></i>
-                            </div>
+                        <div class="success-icon">
+                            <i class="fas fa-check"></i>
                         </div>
 
                         <!-- Main Message -->
-                        <h2 class="fw-bold mb-3" style="color: var(--primary-color);">
+                        <h2 class="confirmation-title">
                             ¡Su pedido fue tomado exitosamente!
                         </h2>
-                        <p class="text-muted mb-4" style="font-size: 1.1rem;">
+                        <p class="confirmation-subtitle">
                             Muchas gracias por preferirnos
                         </p>
 
                         <!-- Order Details -->
-                        <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: left;">
-                            <h6 class="fw-bold mb-3">Detalles del Pedido</h6>
+                        <div class="details-box">
+                            <h6>Detalles del Pedido</h6>
                             
-                            <div class="d-flex justify-content-between mb-2">
-                                <span class="text-muted">Número de Pedido:</span>
-                                <span class="fw-bold">{{ $pedido->id }}</span>
+                            <div class="detail-row">
+                                <span class="detail-label">Número de Pedido:</span>
+                                <span class="detail-value">{{ $pedido->id }}</span>
                             </div>
 
-                            <div class="d-flex justify-content-between mb-2">
-                                <span class="text-muted">Fecha:</span>
-                                <span>{{ $pedido->created_at->format('d/m/Y H:i') }}</span>
+                            <div class="detail-row">
+                                <span class="detail-label">Fecha:</span>
+                                <span class="detail-value">{{ $pedido->created_at->format('d/m/Y H:i') }}</span>
                             </div>
 
-                            <div class="d-flex justify-content-between mb-2">
-                                <span class="text-muted">Estado:</span>
-                                <span class="badge" style="background-color: var(--primary-color);">{{ ucfirst($pedido->estado) }}</span>
+                            <div class="detail-row">
+                                <span class="detail-label">Estado:</span>
+                                <span class="detail-value badge" style="background-color: var(--primary);">{{ ucfirst($pedido->estado) }}</span>
                             </div>
 
-                            <div class="d-flex justify-content-between mb-2">
-                                <span class="text-muted">Tipo de Envío:</span>
-                                <span class="fw-bold text-capitalize">{{ $pedido->tipo_envio ?? 'Estándar' }}</span>
+                            <div class="detail-row">
+                                <span class="detail-label">Tipo de Envío:</span>
+                                <span class="detail-value text-capitalize">{{ $pedido->tipo_envio ?? 'Estándar' }}</span>
                             </div>
 
-                            <hr>
-
-                            <div class="d-flex justify-content-between">
-                                <span class="text-muted fw-bold">Total a Pagar:</span>
-                                <span class="fw-bold" style="color: var(--primary-color); font-size: 1.2rem;">${{ number_format($pedido->total, 2) }}</span>
+                            <div class="detail-row">
+                                <span class="detail-label fw-bold">Total a Pagar:</span>
+                                <span class="detail-value total">${{ number_format($pedido->total, 2) }}</span>
                             </div>
                         </div>
 
                         <!-- Items Summary -->
-                        <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: left;">
-                            <h6 class="fw-bold mb-3">Productos Ordenados</h6>
+                        <div class="items-list">
+                            <h6>Productos Ordenados</h6>
                             
                             @forelse($pedido->detalles as $detalle)
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>{{ $detalle->producto->nombre }}</span>
-                                    <span>
-                                        <small class="text-muted">{{ $detalle->cantidad }}x</small>
-                                        <span class="fw-bold">${{ number_format($detalle->precio * $detalle->cantidad, 2) }}</span>
+                                <div class="item-row">
+                                    <span class="item-name">{{ $detalle->producto->nombre }}</span>
+                                    <span class="item-price">
+                                        <small class="item-quantity">{{ $detalle->cantidad }}x</small>
+                                        <span class="item-total">${{ number_format($detalle->precio * $detalle->cantidad, 2) }}</span>
                                     </span>
                                 </div>
                             @empty
@@ -73,25 +70,23 @@
                         </div>
 
                         <!-- Info Messages -->
-                        <div style="background: #e0f2fe; padding: 12px; border-radius: 6px; border-left: 4px solid var(--primary-color); margin-bottom: 20px; text-align: left;">
-                            <small style="color: #0369a1;">
-                                <i class="fas fa-envelope me-2"></i>Te hemos enviado un correo de confirmación con los detalles del pedido
-                            </small>
+                        <div class="info-message email-info">
+                            <i class="fas fa-envelope"></i>
+                            <span>Te hemos enviado un correo de confirmación con los detalles del pedido</span>
                         </div>
 
-                        <div style="background: #f0fdf4; padding: 12px; border-radius: 6px; border-left: 4px solid #10b981; margin-bottom: 20px; text-align: left;">
-                            <small style="color: #166534;">
-                                <i class="fas fa-truck me-2"></i>Tu pedido será preparado y despachado en las próximas 24 horas
-                            </small>
+                        <div class="info-message delivery-info">
+                            <i class="fas fa-truck"></i>
+                            <span>Tu pedido será preparado y despachado en las próximas 24 horas</span>
                         </div>
 
                         <!-- Action Buttons -->
-                        <div class="d-flex gap-2">
-                            <a href="{{ route('perfil.pedidos') }}" class="btn btn-primary" style="flex: 1;">
-                                <i class="fas fa-list me-2"></i>Ver Mis Pedidos
+                        <div class="action-buttons">
+                            <a href="{{ route('perfil.pedidos') }}" class="btn-primary-action">
+                                <i class="fas fa-list"></i>Ver Mis Pedidos
                             </a>
-                            <a href="{{ route('home') }}" class="btn btn-outline-secondary" style="flex: 1;">
-                                <i class="fas fa-home me-2"></i>Volver al Inicio
+                            <a href="{{ route('home') }}" class="btn-secondary-action">
+                                <i class="fas fa-home"></i>Volver al Inicio
                             </a>
                         </div>
                     </div>
