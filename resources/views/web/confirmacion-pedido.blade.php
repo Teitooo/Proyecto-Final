@@ -38,7 +38,7 @@
 
                             <div class="detail-row">
                                 <span class="detail-label">Estado:</span>
-                                <span class="detail-value badge" style="background-color: var(--primary);">{{ ucfirst($pedido->estado) }}</span>
+                                <span class="detail-value" style="background-color: var(--primary);">{{ ucfirst($pedido->estado) }}</span>
                             </div>
 
                             <div class="detail-row">
