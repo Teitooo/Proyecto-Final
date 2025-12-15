@@ -44,37 +44,37 @@
                         <label class="filter-checkbox">
                             <input type="checkbox" value="all" checked>
                             <span>Todos los productos</span>
-                            <span class="filter-count">12</span>
+                            <span class="filter-count">{{ $categoryCounts['all'] ?? 0 }}</span>
                         </label>
                         <label class="filter-checkbox">
                             <input type="checkbox" value="diagnostico">
                             <span>Diagnóstico</span>
-                            <span class="filter-count">6</span>
+                            <span class="filter-count">{{ $categoryCounts['diagnostico'] ?? 0 }}</span>
                         </label>
                         <label class="filter-checkbox">
                             <input type="checkbox" value="cirugia">
                             <span>Cirugía</span>
-                            <span class="filter-count">1</span>
+                            <span class="filter-count">{{ $categoryCounts['cirugia'] ?? 0 }}</span>
                         </label>
                         <label class="filter-checkbox">
                             <input type="checkbox" value="urgencias">
                             <span>Urgencias</span>
-                            <span class="filter-count">2</span>
+                            <span class="filter-count">{{ $categoryCounts['urgencias'] ?? 0 }}</span>
                         </label>
                         <label class="filter-checkbox">
                             <input type="checkbox" value="laboratorio">
                             <span>Laboratorio</span>
-                            <span class="filter-count">1</span>
+                            <span class="filter-count">{{ $categoryCounts['laboratorio'] ?? 0 }}</span>
                         </label>
                         <label class="filter-checkbox">
                             <input type="checkbox" value="rehabilitacion">
                             <span>Rehabilitación</span>
-                            <span class="filter-count">1</span>
+                            <span class="filter-count">{{ $categoryCounts['rehabilitacion'] ?? 0 }}</span>
                         </label>
                         <label class="filter-checkbox">
                             <input type="checkbox" value="imagenologia">
                             <span>Imagenología</span>
-                            <span class="filter-count">1</span>
+                            <span class="filter-count">{{ $categoryCounts['imagenologia'] ?? 0 }}</span>
                         </label>
                     </div>
                 </div>
