@@ -78,12 +78,12 @@ class ProductoController extends Controller
         $registro->descripcion=$request->input('descripcion');
         $registro->marca=$request->input('marca');
         $registro->categoria=$request->input('categoria');
-        $sufijo=strtolower(Str::random(2));
         
         if ($request->hasFile('imagen')) {
             $image = $request->file('imagen');
             if ($image->isValid()) {
-                $nombreImagen = $sufijo.'-'.time().'.'.$image->getClientOriginalExtension();
+                $nombreProducto = Str::slug($registro->nombre);
+                $nombreImagen = $nombreProducto.'-'.time().'.'.$image->getClientOriginalExtension();
                 $image->move('uploads/productos', $nombreImagen);
                 $registro->imagen = $nombreImagen;
             }
@@ -125,12 +125,12 @@ class ProductoController extends Controller
         $registro->descripcion=$request->input('descripcion');
         $registro->marca=$request->input('marca');
         $registro->categoria=$request->input('categoria');
-        $sufijo=strtolower(Str::random(2));
         
         if ($request->hasFile('imagen')) {
             $image = $request->file('imagen');
             if ($image->isValid()) {
-                $nombreImagen = $sufijo.'-'.time().'.'.$image->getClientOriginalExtension();
+                $nombreProducto = Str::slug($registro->nombre);
+                $nombreImagen = $nombreProducto.'-'.time().'.'.$image->getClientOriginalExtension();
                 $image->move('uploads/productos', $nombreImagen);
                 $old_image = 'uploads/productos/'.$registro->imagen;
                 if (file_exists($old_image)) {
