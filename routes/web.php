@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\DashboardController;
 
 Route::get('/', [WebController::class, 'home'])->name('home');
