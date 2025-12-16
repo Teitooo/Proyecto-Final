@@ -416,23 +416,5 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartBadge();
     renderCart();
     
-    // Dropdown menu handler - Simple version
-    const dropdownToggle = document.querySelector('.dropdown-toggle');
-    const dropdownMenu = document.querySelector('.dropdown-menu');
-    
-    if (dropdownToggle) {
-        console.log('Found dropdown toggle');
-        dropdownToggle.addEventListener('click', function(e) {
-            console.log('Dropdown clicked');
-            if (dropdownMenu) {
-                if (dropdownMenu.style.display === 'block') {
-                    dropdownMenu.style.display = 'none';
-                } else {
-                    dropdownMenu.style.display = 'block';
-                }
-            }
-        });
-    } else {
-        console.log('Dropdown toggle not found');
-    }
+    // No iniciar dropdown aquí, se maneja en nav.blade.php
 });

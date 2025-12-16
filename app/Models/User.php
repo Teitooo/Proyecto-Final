@@ -48,10 +48,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function entradas(){
-        return $this->hasMany(Entrada::class);
-    }
-
     public function pedidos(){
         return $this->hasMany(Pedido::class);
     }

@@ -17,7 +17,7 @@ class CheckAdminAccess
     public function handle(Request $request, Closure $next): Response
     {
         // Permitir acceso a rutas públicas
-        $publicRoutes = ['home', 'index', 'catalog', 'about', 'contact', 'web.show'];
+        $publicRoutes = ['home', 'index', 'catalog', 'about', 'contact', 'web.show', 'dashboard', 'perfil.pedidos', 'perfil.edit', 'perfil.update', 'pedido.checkout', 'pedido.realizar', 'pedido.confirmacion', 'logout', 'carrito.mostrar', 'carrito.agregar', 'carrito.sumar', 'carrito.restar', 'carrito.eliminar', 'carrito.vaciar'];
         
         if ($request->route() && in_array($request->route()->getName(), $publicRoutes)) {
             return $next($request);
