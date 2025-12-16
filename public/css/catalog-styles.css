@@ -332,7 +332,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 0.5rem;
 }
 
 /* Pagination */
@@ -688,20 +687,4 @@
 .product-compare-btn.active {
     background-color: var(--primary);
     color: var(--white);
-}
-
-/* Disabled Button Styles */
-.btn-add-to-cart:disabled,
-.btn-add-to-cart[disabled] {
-    background-color: #e5e7eb !important;
-    color: #9ca3af !important;
-    border-color: #d1d5db !important;
-    cursor: not-allowed !important;
-    opacity: 1 !important;
-}
-
-.btn-add-to-cart:disabled:hover,
-.btn-add-to-cart[disabled]:hover {
-    background-color: #e5e7eb !important;
-    border-color: #d1d5db !important;
 }
