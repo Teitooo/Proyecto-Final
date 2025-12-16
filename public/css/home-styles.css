@@ -1,5 +1,10 @@
 /* Medical Supplies - CSS Styles */
 
+/* Global Link Styles */
+a {
+    text-decoration: none;
+}
+
 /* Navigation Styles */
 nav {
     background: var(--white);

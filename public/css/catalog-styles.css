@@ -1,5 +1,10 @@
 /* Catalog Specific Styles */
 
+/* Global Link Styles */
+a {
+    text-decoration: none;
+}
+
 /* Active Navigation */
 .nav a.active {
     color: var(--primary);
