@@ -268,6 +268,11 @@ function renderCart() {
     const shippingEl = document.getElementById('cartShipping');
     const totalEl = document.getElementById('cartTotal');
     
+    // Si los elementos no existen, no renderizar (no estamos en la página del carrito)
+    if (!cartItems || !subtotalEl || !shippingEl || !totalEl) {
+        return;
+    }
+    
     if (cart.length === 0) {
         cartItems.innerHTML = '<div class="cart-empty"><i class="fas fa-shopping-cart"></i><p>Tu carrito está vacío</p></div>';
         return;

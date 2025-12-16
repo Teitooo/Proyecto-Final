@@ -16,6 +16,7 @@
                                 <option value="pendiente">Pendiente</option>
                                 <option value="en espera">En Espera</option>
                                 <option value="enviado">Enviado</option>
+                                <option value="entregado">Entregado</option>
                                 <option value="devuelto">Devuelto</option>
                                 <option value="anulado">Anulado</option>
                                 <option value="cancelado">Cancelado</option>

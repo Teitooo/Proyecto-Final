@@ -20,12 +20,12 @@
                                     <div class="small-box bg-info">
                                         <div class="inner">
                                             <h3>{{ $newOrders }}</h3>
-                                            <p>🧾 Pedidos nuevos</p>
+                                            <p> Pedidos nuevos</p>
                                         </div>
                                         <div class="icon">
                                             <i class="ion ion-bag"></i>
                                         </div>
-                                        <a href="{{ route('pedidos.admin') }}" class="small-box-footer">➡️Ver detalles <i
+                                        <a href="{{ route('pedidos.admin') }}" class="small-box-footer">Ver detalles <i
                                                 class="fas fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
@@ -34,12 +34,12 @@
                                     <div class="small-box bg-success">
                                         <div class="inner">
                                             <h3>{{ $bounceRate }}<sup style="font-size: 20px">%</sup></h3>
-                                            <p>📉 Interacción del usuario</p>
+                                            <p> Interacción del usuario</p>
                                         </div>
                                         <div class="icon">
                                             <i class="ion ion-stats-bars"></i>
                                         </div>
-                                        <a href="{{ route('pedidos.admin') }}?filter=pending" class="small-box-footer">➡️ Ver estadísticas <i
+                                        <a href="{{ route('admin.estadisticas') }}" class="small-box-footer"> Ver estadísticas <i
                                                 class="fas fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                                         <div class="icon">
                                             <i class="ion ion-person-add"></i>
                                         </div>
-                                        <a href="{{ route('usuarios.index') }}" class="small-box-footer">➡️ Ver usuarios<i
+                                        <a href="{{ route('usuarios.index') }}" class="small-box-footer"> Ver usuarios<i
                                                 class="fas fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
@@ -62,12 +62,12 @@
                                     <div class="small-box bg-danger">
                                         <div class="inner">
                                             <h3>{{ $uniqueVisitors }}</h3>
-                                            <p>🔐 Accesos recientes</p>
+                                            <p> Accesos recientes</p>
                                         </div>
                                         <div class="icon">
                                             <i class="ion ion-pie-graph"></i>
                                         </div>
-                                        <a href="{{ route('usuarios.index') }}" class="small-box-footer">➡️ Ver accesos <i
+                                        <a href="{{ route('admin.accesos') }}" class="small-box-footer"> Ver accesos <i
                                                 class="fas fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>

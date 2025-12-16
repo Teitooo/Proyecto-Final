@@ -49,6 +49,12 @@ Route::middleware(['auth', 'check.admin.access'])->group(function(){
     Route::middleware(['admin.only'])->group(function(){
         Route::get('/administracion/pedidos', [PedidoController::class, 'index'])->name('pedidos.admin');
         Route::patch('/administracion/pedidos/{id}/estado', [PedidoController::class, 'cambiarEstado'])->name('pedidos.cambiar.estado');
+        Route::get('/administracion/estadisticas', function() {
+            return view('admin.estadisticas');
+        })->name('admin.estadisticas');
+        Route::get('/administracion/accesos', function() {
+            return view('admin.accesos');
+        })->name('admin.accesos');
     });
 
     Route::get('/checkout', [PedidoController::class, 'checkout'])->name('pedido.checkout');

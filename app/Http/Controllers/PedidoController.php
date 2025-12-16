@@ -141,7 +141,7 @@ class PedidoController extends Controller
         $estadoNuevo = $request->input('estado');
 
         // Validar que el estado nuevo sea uno permitido
-        $estadosPermitidos = ['enviado', 'anulado', 'cancelado', 'devuelto', 'en espera', 'pendiente'];
+        $estadosPermitidos = ['pendiente', 'en espera', 'enviado', 'entregado', 'cancelado', 'anulado', 'devuelto'];
 
         if (!in_array($estadoNuevo, $estadosPermitidos)) {
             abort(403, 'Estado no válido');
@@ -155,8 +155,8 @@ class PedidoController extends Controller
         }
 
         // Verificar permisos según el estado para no-admins
-        if (in_array($estadoNuevo, ['enviado', 'anulado', 'devuelto', 'en espera'])) {
-            if (!auth()->user()->can('pedido-anulate')) {
+        if (in_array($estadoNuevo, ['enviado', 'entregado', 'anulado', 'devuelto', 'en espera'])) {
+            if (!auth()->user()->can('pedido-change-status')) {
                 abort(403, 'No tiene permiso para cambiar a este estado');
             }
         }

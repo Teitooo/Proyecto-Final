@@ -44,7 +44,6 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="{{asset('css/adminlte.css')}}" />
     <!--end::Required Plugin(AdminLTE)-->
-    <link rel="stylesheet" href="{{asset('css/select2-custom.css')}}" />
     @stack('estilos')
   </head>
   <!--end::Head-->
