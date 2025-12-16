@@ -42,18 +42,19 @@ class WebController extends Controller
         // Obtener productos filtrados
         $productos = $query->paginate(4);
         
-        // Contar productos por categoría
-        $categoryCounts = [
-            'all' => Producto::count(),
-            'diagnostico' => Producto::where('categoria', 'diagnostico')->count(),
-            'cirugia' => Producto::where('categoria', 'cirugia')->count(),
-            'urgencias' => Producto::where('categoria', 'urgencias')->count(),
-            'laboratorio' => Producto::where('categoria', 'laboratorio')->count(),
-            'rehabilitacion' => Producto::where('categoria', 'rehabilitacion')->count(),
-            'imagenologia' => Producto::where('categoria', 'imagenologia')->count(),
-        ];
+        // Contar productos por categoría - dinámicamente desde BD
+        $categoryCounts = ['all' => Producto::count()];
+        $categorias = Producto::whereNotNull('categoria')
+            ->distinct()
+            ->pluck('categoria')
+            ->sort();
+        
+        foreach ($categorias as $categoria) {
+            $categoryCounts[$categoria] = Producto::where('categoria', $categoria)->count();
+        }
         
         return view('web.home', compact('productos', 'categoryCounts'));
+
 
     }
 
@@ -93,18 +94,19 @@ class WebController extends Controller
         // Obtener productos filtrados
         $productos = $query->paginate(12);
         
-        // Contar productos por categoría (simuladas)
-        $categoryCounts = [
-            'all' => Producto::count(),
-            'diagnostico' => Producto::where('categoria', 'diagnostico')->count(),
-            'cirugia' => Producto::where('categoria', 'cirugia')->count(),
-            'urgencias' => Producto::where('categoria', 'urgencias')->count(),
-            'laboratorio' => Producto::where('categoria', 'laboratorio')->count(),
-            'rehabilitacion' => Producto::where('categoria', 'rehabilitacion')->count(),
-            'imagenologia' => Producto::where('categoria', 'imagenologia')->count(),
-        ];
+        // Contar productos por categoría - dinámicamente desde BD
+        $categoryCounts = ['all' => Producto::count()];
+        $categorias = Producto::whereNotNull('categoria')
+            ->distinct()
+            ->pluck('categoria')
+            ->sort();
+        
+        foreach ($categorias as $categoria) {
+            $categoryCounts[$categoria] = Producto::where('categoria', $categoria)->count();
+        }
         
         return view('web.catalog', compact('productos', 'categoryCounts'));
+
     }
 
     public function show($id){
