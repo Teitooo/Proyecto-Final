@@ -43,36 +43,56 @@
                                 <span>Todos los productos</span>
                                 <span class="filter-count">{{ $categoryCounts['all'] ?? 0 }}</span>
                             </label>
-                            <label class="filter-checkbox">
-                                <input type="radio" name="categoria" value="diagnostico" {{ request('categoria') === 'diagnostico' ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['categoria' => 'diagnostico']) }}'">
-                                <span>Diagnóstico</span>
-                                <span class="filter-count">{{ $categoryCounts['diagnostico'] ?? 0 }}</span>
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="radio" name="categoria" value="cirugia" {{ request('categoria') === 'cirugia' ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['categoria' => 'cirugia']) }}'">
-                                <span>Cirugía</span>
-                                <span class="filter-count">{{ $categoryCounts['cirugia'] ?? 0 }}</span>
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="radio" name="categoria" value="urgencias" {{ request('categoria') === 'urgencias' ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['categoria' => 'urgencias']) }}'">
-                                <span>Urgencias</span>
-                                <span class="filter-count">{{ $categoryCounts['urgencias'] ?? 0 }}</span>
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="radio" name="categoria" value="laboratorio" {{ request('categoria') === 'laboratorio' ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['categoria' => 'laboratorio']) }}'">
-                                <span>Laboratorio</span>
-                                <span class="filter-count">{{ $categoryCounts['laboratorio'] ?? 0 }}</span>
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="radio" name="categoria" value="rehabilitacion" {{ request('categoria') === 'rehabilitacion' ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['categoria' => 'rehabilitacion']) }}'">
-                                <span>Rehabilitación</span>
-                                <span class="filter-count">{{ $categoryCounts['rehabilitacion'] ?? 0 }}</span>
-                            </label>
-                            <label class="filter-checkbox">
-                                <input type="radio" name="categoria" value="imagenologia" {{ request('categoria') === 'imagenologia' ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['categoria' => 'imagenologia']) }}'">
-                                <span>Imagenología</span>
-                                <span class="filter-count">{{ $categoryCounts['imagenologia'] ?? 0 }}</span>
-                            </label>
+                            @php
+                                $categorias = [
+                                    'Musculoesquelético' => 'Musculoesquelético',
+                                    'Respiratorio' => 'Respiratorio',
+                                    'Cardiovascular' => 'Cardiovascular',
+                                    'Neurológico' => 'Neurológico',
+                                    'Digestivo' => 'Digestivo',
+                                    'Renal y urinario' => 'Renal y urinario',
+                                    'Hematológico' => 'Hematológico',
+                                    'Endocrino y metabólico' => 'Endocrino y metabólico',
+                                    'Inmunológico' => 'Inmunológico',
+                                    'Infeccioso' => 'Infeccioso',
+                                    'Materno' => 'Materno',
+                                    'Obstétrico' => 'Obstétrico',
+                                    'Neonatal' => 'Neonatal',
+                                    'Pediátrico' => 'Pediátrico',
+                                    'Sensorial' => 'Sensorial',
+                                    'Oftalmológico' => 'Oftalmológico',
+                                    'Otorrinolaringológico' => 'Otorrinolaringológico',
+                                    'Odontológico' => 'Odontológico',
+                                    'Quirúrgico' => 'Quirúrgico',
+                                    'Anestesiología' => 'Anestesiología',
+                                    'Diagnóstico por imágenes' => 'Diagnóstico por imágenes',
+                                    'Imagenología' => 'Imagenología',
+                                    'Radiológico' => 'Radiológico',
+                                    'Medicina nuclear' => 'Medicina nuclear',
+                                    'Laboratorio clínico' => 'Laboratorio clínico',
+                                    'Banco de sangre' => 'Banco de sangre',
+                                    'Rehabilitación' => 'Rehabilitación',
+                                    'Fisioterapia' => 'Fisioterapia',
+                                    'Enfermería' => 'Enfermería',
+                                    'Atención primaria' => 'Atención primaria',
+                                    'Terapia intensiva' => 'Terapia intensiva',
+                                    'Urgencias' => 'Urgencias',
+                                    'Hospitalización' => 'Hospitalización',
+                                    'Esterilización' => 'Esterilización',
+                                    'Bioseguridad' => 'Bioseguridad',
+                                    'Vacunación' => 'Vacunación',
+                                    'Farmacéutico' => 'Farmacéutico',
+                                    'Dispositivos médicos' => 'Dispositivos médicos',
+                                    'Equipos biomédicos' => 'Equipos biomédicos',
+                                ];
+                            @endphp
+                            @foreach($categorias as $key => $label)
+                                <label class="filter-checkbox">
+                                    <input type="radio" name="categoria" value="{{ $key }}" {{ request('categoria') === $key ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['categoria' => $key]) }}'">
+                                    <span>{{ $label }}</span>
+                                    <span class="filter-count">{{ $categoryCounts[$key] ?? 0 }}</span>
+                                </label>
+                            @endforeach
                         </div>
                     </div>
 
