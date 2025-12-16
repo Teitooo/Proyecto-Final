@@ -741,6 +741,22 @@ p {
     transform: translateY(-5px);
 }
 
+.category-card.active {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: var(--white);
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--primary);
+}
+
+.category-card.active .category-icon {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.category-card.active .category-badge {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+}
+
 .category-icon {
     width: 4rem;
     height: 4rem;

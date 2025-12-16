@@ -171,58 +171,58 @@
             </div>
 
             <div class="categories-grid">
-                <div class="category-card" onclick="filterByCategory('diagnostico')">
+                <div class="category-card {{ request('categoria') === 'diagnostico' ? 'active' : '' }}" onclick="window.location='{{ route('home', ['categoria' => 'diagnostico']) }}'" style="cursor: pointer;">
                     <div class="category-icon">
                         <i class="fas fa-stethoscope"></i>
                     </div>
                     <h3>Diagnóstico</h3>
                     <p>Equipos para diagnóstico preciso</p>
-                    <div class="category-badge">45 productos</div>
+                    <div class="category-badge">{{ $categoryCounts['diagnostico'] ?? 0 }} productos</div>
                 </div>
 
-                <div class="category-card" onclick="filterByCategory('cirugia')">
+                <div class="category-card {{ request('categoria') === 'cirugia' ? 'active' : '' }}" onclick="window.location='{{ route('home', ['categoria' => 'cirugia']) }}'" style="cursor: pointer;">
                     <div class="category-icon">
                         <i class="fas fa-syringe"></i>
                     </div>
                     <h3>Cirugía</h3>
                     <p>Instrumental quirúrgico profesional</p>
-                    <div class="category-badge">62 productos</div>
+                    <div class="category-badge">{{ $categoryCounts['cirugia'] ?? 0 }} productos</div>
                 </div>
 
-                <div class="category-card" onclick="filterByCategory('laboratorio')">
+                <div class="category-card {{ request('categoria') === 'laboratorio' ? 'active' : '' }}" onclick="window.location='{{ route('home', ['categoria' => 'laboratorio']) }}'" style="cursor: pointer;">
                     <div class="category-icon">
                         <i class="fas fa-microscope"></i>
                     </div>
                     <h3>Laboratorio</h3>
                     <p>Equipamiento para laboratorio clínico</p>
-                    <div class="category-badge">38 productos</div>
+                    <div class="category-badge">{{ $categoryCounts['laboratorio'] ?? 0 }} productos</div>
                 </div>
 
-                <div class="category-card" onclick="filterByCategory('urgencias')">
+                <div class="category-card {{ request('categoria') === 'urgencias' ? 'active' : '' }}" onclick="window.location='{{ route('home', ['categoria' => 'urgencias']) }}'" style="cursor: pointer;">
                     <div class="category-icon">
                         <i class="fas fa-ambulance"></i>
                     </div>
                     <h3>Urgencias</h3>
                     <p>Equipos de emergencia médica</p>
-                    <div class="category-badge">29 productos</div>
+                    <div class="category-badge">{{ $categoryCounts['urgencias'] ?? 0 }} productos</div>
                 </div>
 
-                <div class="category-card" onclick="filterByCategory('imagenologia')">
+                <div class="category-card {{ request('categoria') === 'imagenologia' ? 'active' : '' }}" onclick="window.location='{{ route('home', ['categoria' => 'imagenologia']) }}'" style="cursor: pointer;">
                     <div class="category-icon">
                         <i class="fas fa-x-ray"></i>
                     </div>
                     <h3>Imagenología</h3>
                     <p>Equipos de imagen médica</p>
-                    <div class="category-badge">21 productos</div>
+                    <div class="category-badge">{{ $categoryCounts['imagenologia'] ?? 0 }} productos</div>
                 </div>
 
-                <div class="category-card" onclick="filterByCategory('rehabilitacion')">
+                <div class="category-card {{ request('categoria') === 'rehabilitacion' ? 'active' : '' }}" onclick="window.location='{{ route('home', ['categoria' => 'rehabilitacion']) }}'" style="cursor: pointer;">
                     <div class="category-icon">
                         <i class="fas fa-wheelchair"></i>
                     </div>
                     <h3>Rehabilitación</h3>
                     <p>Equipos de fisioterapia</p>
-                    <div class="category-badge">34 productos</div>
+                    <div class="category-badge">{{ $categoryCounts['rehabilitacion'] ?? 0 }} productos</div>
                 </div>
             </div>
         </div>

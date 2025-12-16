@@ -23,10 +23,13 @@
             <aside class="catalog-sidebar">
                 <!-- Search -->
                 <div class="sidebar-section">
-                    <div class="search-box-catalog">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="searchInput" placeholder="Buscar productos..." onchange="filterProducts()">
-                    </div>
+                    <form method="GET" action="{{ route('catalog') }}" style="margin-bottom: 20px;">
+                        <div class="search-box-catalog">
+                            <i class="fas fa-search"></i>
+                            <input type="text" name="search" placeholder="Buscar productos..." value="{{ request('search') }}" style="border: none; outline: none; background: transparent; width: 100%; padding-left: 10px;">
+                        </div>
+                        <button type="submit" style="display: none;"></button>
+                    </form>
                 
                     <!-- Categories Filter -->
                     <div class="sidebar-section">
@@ -36,37 +39,37 @@
                         </h3>
                         <div class="filter-options">
                             <label class="filter-checkbox">
-                                <input type="radio" name="categoria" value="all" checked onchange="filterProducts()">
+                                <input type="radio" name="categoria" value="all" {{ !request('categoria') || request('categoria') === 'all' ? 'checked' : '' }} onclick="window.location='{{ route('catalog') }}'">
                                 <span>Todos los productos</span>
                                 <span class="filter-count">{{ $categoryCounts['all'] ?? 0 }}</span>
                             </label>
                             <label class="filter-checkbox">
-                                <input type="radio" name="categoria" value="diagnostico" onchange="filterProducts()">
+                                <input type="radio" name="categoria" value="diagnostico" {{ request('categoria') === 'diagnostico' ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['categoria' => 'diagnostico']) }}'">
                                 <span>Diagnóstico</span>
                                 <span class="filter-count">{{ $categoryCounts['diagnostico'] ?? 0 }}</span>
                             </label>
                             <label class="filter-checkbox">
-                                <input type="radio" name="categoria" value="cirugia" onchange="filterProducts()">
+                                <input type="radio" name="categoria" value="cirugia" {{ request('categoria') === 'cirugia' ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['categoria' => 'cirugia']) }}'">
                                 <span>Cirugía</span>
                                 <span class="filter-count">{{ $categoryCounts['cirugia'] ?? 0 }}</span>
                             </label>
                             <label class="filter-checkbox">
-                                <input type="radio" name="categoria" value="urgencias" onchange="filterProducts()">
+                                <input type="radio" name="categoria" value="urgencias" {{ request('categoria') === 'urgencias' ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['categoria' => 'urgencias']) }}'">
                                 <span>Urgencias</span>
                                 <span class="filter-count">{{ $categoryCounts['urgencias'] ?? 0 }}</span>
                             </label>
                             <label class="filter-checkbox">
-                                <input type="radio" name="categoria" value="laboratorio" onchange="filterProducts()">
+                                <input type="radio" name="categoria" value="laboratorio" {{ request('categoria') === 'laboratorio' ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['categoria' => 'laboratorio']) }}'">
                                 <span>Laboratorio</span>
                                 <span class="filter-count">{{ $categoryCounts['laboratorio'] ?? 0 }}</span>
                             </label>
                             <label class="filter-checkbox">
-                                <input type="radio" name="categoria" value="rehabilitacion" onchange="filterProducts()">
+                                <input type="radio" name="categoria" value="rehabilitacion" {{ request('categoria') === 'rehabilitacion' ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['categoria' => 'rehabilitacion']) }}'">
                                 <span>Rehabilitación</span>
                                 <span class="filter-count">{{ $categoryCounts['rehabilitacion'] ?? 0 }}</span>
                             </label>
                             <label class="filter-checkbox">
-                                <input type="radio" name="categoria" value="imagenologia" onchange="filterProducts()">
+                                <input type="radio" name="categoria" value="imagenologia" {{ request('categoria') === 'imagenologia' ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['categoria' => 'imagenologia']) }}'">
                                 <span>Imagenología</span>
                                 <span class="filter-count">{{ $categoryCounts['imagenologia'] ?? 0 }}</span>
                             </label>
@@ -91,7 +94,7 @@
                                     $count = \App\Models\Producto::where('marca', $marca)->count();
                                 @endphp
                                 <label class="filter-checkbox">
-                                    <input type="checkbox" name="marca" value="{{ $marca }}" class="brand-filter" onchange="filterProducts()">
+                                    <input type="checkbox" name="marca" value="{{ $marca }}" {{ request('marca') === $marca ? 'checked' : '' }} onclick="window.location='{{ route('catalog', ['marca' => $marca]) }}'">
                                     <span>{{ $marca }}</span>
                                     <span class="filter-count">{{ $count }}</span>
                                 </label>
