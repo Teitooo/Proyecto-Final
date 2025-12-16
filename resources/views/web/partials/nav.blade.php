@@ -15,7 +15,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">Acerca
-                    de</a>
+                    de Nosotros</a>
             </li>
 
             <li class="nav-item dropdown">

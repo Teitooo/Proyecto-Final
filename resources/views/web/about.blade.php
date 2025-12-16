@@ -10,11 +10,6 @@
 <!-- About Header -->
 <div class="about-header">
     <div class="container">
-        <div class="breadcrumb">
-            <a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a>
-            <i class="fas fa-chevron-right"></i>
-            <span>Acerca de Nosotros</span>
-        </div>
         <h1>Acerca de Nosotros</h1>
         <p class="about-subtitle">Comprometidos con la excelencia en el cuidado de la salud desde 1998</p>
     </div>

@@ -10,11 +10,6 @@
 <!-- Catalog Header -->
 <div class="catalog-header">
     <div class="container">
-        <div class="breadcrumb">
-            <a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a>
-            <i class="fas fa-chevron-right"></i>
-            <span>Catálogo</span>
-        </div>
         <h1>Catálogo de Productos</h1>
         <p class="catalog-subtitle">Descubre nuestra completa gama de equipos médicos de alta calidad</p>
     </div>
