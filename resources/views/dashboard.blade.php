@@ -15,6 +15,7 @@
                             <h4 class="mb-4">Bienvenido, {{ Auth::user()->name }}</h4>
                             @if(Auth::user()->hasRole('admin'))
                             <div class="row">
+                                <!-- Tarjeta: Pedidos Nuevos -->
                                 <div class="col-md-3">
                                     <div class="small-box bg-info">
                                         <div class="inner">
@@ -24,10 +25,11 @@
                                         <div class="icon">
                                             <i class="ion ion-bag"></i>
                                         </div>
-                                        <a href="#" class="small-box-footer">➡️Ver detalles <i
+                                        <a href="{{ route('pedidos.admin') }}" class="small-box-footer">➡️Ver detalles <i
                                                 class="fas fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
+                                <!-- Tarjeta: Estadísticas -->
                                 <div class="col-md-3">
                                     <div class="small-box bg-success">
                                         <div class="inner">
@@ -37,10 +39,11 @@
                                         <div class="icon">
                                             <i class="ion ion-stats-bars"></i>
                                         </div>
-                                        <a href="#" class="small-box-footer">➡️ Ver estadísticas <i
+                                        <a href="{{ route('pedidos.admin') }}?filter=pending" class="small-box-footer">➡️ Ver estadísticas <i
                                                 class="fas fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
+                                <!-- Tarjeta: Usuarios Registrados -->
                                 <div class="col-md-3">
                                     <div class="small-box bg-warning">
                                         <div class="inner">
@@ -50,10 +53,11 @@
                                         <div class="icon">
                                             <i class="ion ion-person-add"></i>
                                         </div>
-                                        <a href="#" class="small-box-footer">➡️ Ver usuarios<i
+                                        <a href="{{ route('usuarios.index') }}" class="small-box-footer">➡️ Ver usuarios<i
                                                 class="fas fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
+                                <!-- Tarjeta: Accesos Recientes -->
                                 <div class="col-md-3">
                                     <div class="small-box bg-danger">
                                         <div class="inner">
@@ -63,7 +67,7 @@
                                         <div class="icon">
                                             <i class="ion ion-pie-graph"></i>
                                         </div>
-                                        <a href="#" class="small-box-footer">➡️ Ver accesos <i
+                                        <a href="{{ route('usuarios.index') }}" class="small-box-footer">➡️ Ver accesos <i
                                                 class="fas fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
@@ -79,7 +83,7 @@
                                         <div class="icon">
                                             <i class="ion ion-bag"></i>
                                         </div>
-                                        <a href="#" class="small-box-footer">Ver Pedidos <i
+                                        <a href="{{ route('perfil.pedidos') }}" class="small-box-footer">Ver Pedidos <i
                                                 class="fas fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
