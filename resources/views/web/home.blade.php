@@ -257,6 +257,19 @@
                                 <div class="product-price">
                                     ${{ number_format($producto->precio, 2) }}
                                 </div>
+                                <!-- Disponibilidad -->
+                                @if($producto->inventario)
+                                    <div style="font-size: 0.85rem; color: {{ $producto->inventario->estado === 'activo' && $producto->inventario->cantidad_disponible > 0 ? '#10b981' : '#ef4444' }}; margin-top: 5px;">
+                                        <i class="bi bi-archive"></i>
+                                        @if($producto->inventario->estado !== 'activo')
+                                            No disponible
+                                        @elseif($producto->inventario->cantidad_disponible > 0)
+                                            Disponible ({{ $producto->inventario->cantidad_disponible }})
+                                        @else
+                                            Agotado
+                                        @endif
+                                    </div>
+                                @endif
                             </div>
 
                             <!-- Product Actions -->
@@ -266,8 +279,17 @@
                                     <i class="bi bi-eye"></i> Ver
                                 </a>
                                 <button class="btn-action btn-cart" 
-                                        onclick="addToCart({{$producto->id}})">
-                                    <i class="bi bi-cart-plus"></i> Agregar
+                                        onclick="addToCart({{$producto->id}})"
+                                        {{ (!$producto->inventario || $producto->inventario->estado !== 'activo' || $producto->inventario->cantidad_disponible <= 0) ? 'disabled' : '' }}
+                                        style="{{ (!$producto->inventario || $producto->inventario->estado !== 'activo' || $producto->inventario->cantidad_disponible <= 0) ? 'opacity: 0.5; cursor: not-allowed;' : '' }}">
+                                    <i class="bi bi-cart-plus"></i> 
+                                    @if(!$producto->inventario || $producto->inventario->estado !== 'activo')
+                                        No disponible
+                                    @elseif($producto->inventario->cantidad_disponible <= 0)
+                                        Agotado
+                                    @else
+                                        Agregar
+                                    @endif
                                 </button>
                             </div>
                         </div>

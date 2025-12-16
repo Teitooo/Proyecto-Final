@@ -11,9 +11,29 @@ class CarritoController extends Controller
         $producto = Producto::findOrFail($request->producto_id);
         $cantidad = $request->cantidad ?? 1;
 
+        // Verificar si el producto está activo en inventario
+        $inventario = $producto->inventario;
+        if (!$inventario || $inventario->estado !== 'activo') {
+            return redirect()->back()->with('error', 'Lo sentimos, este producto no está disponible en este momento.');
+        }
+
+        // Verificar si hay cantidad disponible
+        if ($inventario->cantidad_disponible <= 0) {
+            return redirect()->back()->with('error', 'Lo sentimos, este producto está agotado.');
+        }
+
+        // Validar que no agregues más de lo disponible
+        if ($cantidad > $inventario->cantidad_disponible) {
+            return redirect()->back()->with('error', 'Solo hay ' . $inventario->cantidad_disponible . ' unidades disponibles.');
+        }
+
         $carrito = session()->get('carrito', []);
         if (isset($carrito[$producto->id])) {
-            // Ya existe en el carrito, solo aumenta la cantidad
+            // Validar cantidad total
+            $cantidadTotal = $carrito[$producto->id]['cantidad'] + $cantidad;
+            if ($cantidadTotal > $inventario->cantidad_disponible) {
+                return redirect()->back()->with('error', 'Solo hay ' . $inventario->cantidad_disponible . ' unidades disponibles en total.');
+            }
             $carrito[$producto->id]['cantidad'] += $cantidad;
         } else {
             // No existe, lo agregamos
