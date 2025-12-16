@@ -22,6 +22,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
     
     <!-- Custom Styles -->
+    <link href="{{ asset('css/notifications.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/home-styles.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/item-styles.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/carrito-styles.css') }}" rel="stylesheet" />

@@ -173,7 +173,7 @@
                                             <i class="bi bi-eye"></i> Ver
                                         </a>
                                         <button class="btn btn-primary btn-add-to-cart" 
-                                                onclick="addToCart({{ $producto->id }})"
+                                                onclick="addToCartAjax({{ $producto->id }}, event)"
                                                 {{ (!$producto->inventario || $producto->inventario->estado !== 'activo' || $producto->inventario->cantidad_disponible <= 0) ? 'disabled' : '' }}
                                                 style="{{ (!$producto->inventario || $producto->inventario->estado !== 'activo' || $producto->inventario->cantidad_disponible <= 0) ? 'opacity: 0.5; cursor: not-allowed;' : '' }}">
                                             <i class="fas fa-shopping-cart"></i>

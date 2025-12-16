@@ -11,19 +11,31 @@ class CarritoController extends Controller
         $producto = Producto::findOrFail($request->producto_id);
         $cantidad = $request->cantidad ?? 1;
 
+        // Detectar si es AJAX
+        $isAjax = $request->isJson() || $request->header('X-Requested-With') === 'XMLHttpRequest' || $request->wantsJson();
+
         // Verificar si el producto está activo en inventario
         $inventario = $producto->inventario;
         if (!$inventario || $inventario->estado !== 'activo') {
+            if ($isAjax) {
+                return response()->json(['success' => false, 'message' => 'Lo sentimos, este producto no está disponible en este momento.'], 400);
+            }
             return redirect()->back()->with('error', 'Lo sentimos, este producto no está disponible en este momento.');
         }
 
         // Verificar si hay cantidad disponible
         if ($inventario->cantidad_disponible <= 0) {
+            if ($isAjax) {
+                return response()->json(['success' => false, 'message' => 'Lo sentimos, este producto está agotado.'], 400);
+            }
             return redirect()->back()->with('error', 'Lo sentimos, este producto está agotado.');
         }
 
         // Validar que no agregues más de lo disponible
         if ($cantidad > $inventario->cantidad_disponible) {
+            if ($isAjax) {
+                return response()->json(['success' => false, 'message' => 'Solo hay ' . $inventario->cantidad_disponible . ' unidades disponibles.'], 400);
+            }
             return redirect()->back()->with('error', 'Solo hay ' . $inventario->cantidad_disponible . ' unidades disponibles.');
         }
 
@@ -32,6 +44,9 @@ class CarritoController extends Controller
             // Validar cantidad total
             $cantidadTotal = $carrito[$producto->id]['cantidad'] + $cantidad;
             if ($cantidadTotal > $inventario->cantidad_disponible) {
+                if ($isAjax) {
+                    return response()->json(['success' => false, 'message' => 'Solo hay ' . $inventario->cantidad_disponible . ' unidades disponibles en total.'], 400);
+                }
                 return redirect()->back()->with('error', 'Solo hay ' . $inventario->cantidad_disponible . ' unidades disponibles en total.');
             }
             $carrito[$producto->id]['cantidad'] += $cantidad;
@@ -46,6 +61,16 @@ class CarritoController extends Controller
             ];
         }
         session()->put('carrito', $carrito);
+        
+        // Si es AJAX, devolver JSON
+        if ($isAjax) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Producto agregado al carrito',
+                'carrito_count' => array_sum(array_column($carrito, 'cantidad'))
+            ]);
+        }
+        
         return redirect()->route('carrito.mostrar')->with('mensaje', 'Producto agregado al carrito');
     }
 

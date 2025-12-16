@@ -76,7 +76,7 @@
                                         <i class="bi bi-eye"></i> Ver Producto
                                     </a>
                                     <button class="btn btn-primary btn-sm" 
-                                            onclick="addToCart({{$producto->id}})">
+                                            onclick="addToCartAjax({{$producto->id}}, event)">
                                         <i class="bi bi-cart-plus"></i> Agregar al Carrito
                                     </button>
                                 </div>

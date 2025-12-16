@@ -245,6 +245,53 @@ function addToCart(productId) {
     form.submit();
 }
 
+// Función para agregar al carrito sin redirigir (AJAX)
+function addToCartAjax(productId, event = null) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    const csrfToken = document.querySelector('meta[name="csrf-token"]');
+    const token = csrfToken ? csrfToken.getAttribute('content') : '';
+    
+    fetch('/carrito/agregar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': token,
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: JSON.stringify({
+            producto_id: productId,
+            cantidad: 1
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Response:', data);
+        if (data.success) {
+            showNotification('✓ ' + data.message, 'success');
+            updateCartBadge();
+            // Animar el icono del carrito
+            const cartBadge = document.getElementById('cartBadge');
+            if (cartBadge) {
+                cartBadge.style.animation = 'none';
+                setTimeout(() => {
+                    cartBadge.style.animation = 'pulse 0.5s ease-in-out';
+                }, 10);
+            }
+        } else {
+            showNotification('✗ ' + (data.message || 'No se pudo agregar el producto'), 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showNotification('Error al agregar el producto', 'error');
+    });
+}
+
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
     updateCart();
@@ -402,10 +449,18 @@ function showNotification(message, type = 'info') {
     `;
     document.body.appendChild(notification);
     
+    // Mostrar la notificación
+    setTimeout(() => {
+        notification.style.opacity = '1';
+    }, 10);
+    
+    // Duración más larga para mensajes de éxito
+    const duration = type === 'success' ? 4000 : 3000;
+    
     setTimeout(() => {
         notification.style.animation = 'slideOut 0.3s ease forwards';
         setTimeout(() => notification.remove(), 300);
-    }, 3000);
+    }, duration);
 }
 
 // Initialize
