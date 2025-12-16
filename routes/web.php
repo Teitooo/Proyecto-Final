@@ -12,7 +12,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PedidoController;
-use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', [WebController::class, 'home'])->name('home');
 Route::get('/home', [WebController::class, 'home'])->name('index');
@@ -55,9 +55,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/pedido/confirmacion/{id}', [PedidoController::class, 'confirmacion'])->name('pedido.confirmacion');
     Route::get('/perfil/pedidos', [PedidoController::class, 'misPedidos'])->name('perfil.pedidos');    
 
-    Route::get('dashboard', function(){
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
