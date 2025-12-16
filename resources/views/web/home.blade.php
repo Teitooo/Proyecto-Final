@@ -273,7 +273,7 @@
                             </div>
 
                             <!-- Product Actions -->
-                            <div class="product-actions" style="margin-top: 10px;">
+                            <div class="product-actions" style="margin-top: 10px; padding: 0 15px 15px 15px;">
                                 <a href="{{ route('web.show', $producto->id) }}" class="btn btn-outline" style="flex: 1; margin-right: 5px;">
                                     <i class="bi bi-eye"></i> Ver
                                 </a>
