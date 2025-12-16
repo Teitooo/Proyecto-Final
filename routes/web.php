@@ -34,7 +34,7 @@ Route::get('/carrito/restar/{productoId}', [CarritoController::class, 'restar'])
 Route::get('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
 Route::get('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth', 'check.admin.access'])->group(function(){
     // Rutas solo para ADMINS - Protegidas con middleware
     Route::middleware(['admin.only'])->group(function(){
         Route::resource('usuarios', UserController::class);

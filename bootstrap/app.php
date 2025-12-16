@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Registrar alias de middleware personalizado
         $middleware->alias([
             'admin.only' => \App\Http\Middleware\AdminOnlyMiddleware::class,
+            'check.admin.access' => \App\Http\Middleware\CheckAdminAccess::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
