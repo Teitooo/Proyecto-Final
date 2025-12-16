@@ -273,16 +273,15 @@
                             </div>
 
                             <!-- Product Actions -->
-                            <div class="product-actions">
-                                <a class="btn-action" 
-                                   href="{{route('web.show', $producto->id)}}">
+                            <div class="product-actions" style="margin-top: 10px;">
+                                <a href="{{ route('web.show', $producto->id) }}" class="btn btn-outline" style="flex: 1; margin-right: 5px;">
                                     <i class="bi bi-eye"></i> Ver
                                 </a>
-                                <button class="btn-action btn-cart" 
-                                        onclick="addToCartAjax({{$producto->id}}, event)"
+                                <button class="btn btn-primary btn-add-to-cart" 
+                                        onclick="addToCartAjax({{ $producto->id }}, event)"
                                         {{ (!$producto->inventario || $producto->inventario->estado !== 'activo' || $producto->inventario->cantidad_disponible <= 0) ? 'disabled' : '' }}
                                         style="{{ (!$producto->inventario || $producto->inventario->estado !== 'activo' || $producto->inventario->cantidad_disponible <= 0) ? 'opacity: 0.5; cursor: not-allowed;' : '' }}">
-                                    <i class="bi bi-cart-plus"></i> 
+                                    <i class="fas fa-shopping-cart"></i>
                                     @if(!$producto->inventario || $producto->inventario->estado !== 'activo')
                                         No disponible
                                     @elseif($producto->inventario->cantidad_disponible <= 0)
